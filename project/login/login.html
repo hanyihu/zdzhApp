@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" /> -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title></title>
+<link href="../../css/mui.min.css" rel="stylesheet" />
+<link href="../../css/mui.picker.min.css" rel="stylesheet"/>
+    <link href="../../css/mui.poppicker.css" rel="stylesheet" />
+<link href="../../css/index.css" rel="stylesheet"/>
+<link href="../../css/login.css" rel="stylesheet"/>
+<link rel="stylesheet" href="../../fonts/iconfont.css" />
+<link rel="stylesheet" href="../../css/lm_reset.css" />
+<link rel="stylesheet" href="../../css/lm_pages.css" />
+</head>
+<body class="login-bg">
+<div id="app">
+	<div class="login-logo" style="margin-top: 10%;">
+		<img style="width: 80px ;height: 80px;" src="../../img/tingnan/tingnan.png" />
+	</div>
+
+	<div class="login-form" style="margin-top: 30%;">
+		<form >
+			<div class="login-form-row" >
+				<input id="loginName" type="text" placeholder="请输入您的账号" >
+				<img src="../../img/login-user.png" />
+			</div>
+			<div class="login-form-row">
+				<input id="password" type="password" placeholder="请输入您的密码" >
+				<img src="../../img/login-pass.png" />
+			</div>
+		</form>
+	</div>
+	<!-- <div class="lm_qtlogin_link lm_tex_cen">
+		 <span class=" lm_c_999" style="padding-left: 26px;color: white;" id="mobileReg">注册</span>
+		<span class="lm_c_e5">|</span> 
+		<span class="lm_c_999 " style="color: white;" id="forget">忘记密码</span>
+	</div> -->
+	
+	<div class=" " style="margin-top: 10%;">
+		<input style="display:block;margin:0 auto;width: 85%;margin-top: 5%;" 
+		type="button" id="loginBtn" value="登&nbsp;&nbsp;录" class="langmin_Submit langmin_jgbg" />
+	</div>
+	
+
+	
+</div>
+</body>
+<script src="../../js/mui.min.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mui.poppicker.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/util.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/vue-touch.js"></script>
+<script type="text/javascript">
+   
+ mui.init()
+ mui.plusReady(function() {
+ 	
+	 var $loginName = localStorage.getItem("$loginName");
+	            if($loginName != null) //如果缓存中有数据，则加载出来 
+	            {
+					console.log("$loginName=====++++"+$loginName)
+	                document.getElementById("loginName").value = $loginName;
+	                document.getElementById("password").value = localStorage.getItem("$password");
+	               // document.getElementById("chkRem").checked = "checked";
+	            }
+	          
+	
+ 	//两次返回退出应用
+ 	var first = null;
+ 	mui.back = function() {
+ 		//mui.plusReady(function() {
+ 		//首页返回键处理
+ 		//处理逻辑：1秒内，连续两次按返回键，则退出应用；
+ 		if (!first) {
+ 			first = new Date().getTime();
+ 			mui.toast('再按一次退出应用');
+ 			setTimeout(function() {
+ 				first = null;
+ 			}, 1000);
+ 		} else {
+ 			if (new Date().getTime() - first < 1000) {
+ 				plus.runtime.quit();
+ 			}
+ 		}
+ 		//});
+ 	}
+ 	
+	//忘记密码
+	mui('body').on('tap','#forget',function(){
+		var page = "forget_password.html"
+		mui.openWindow({
+			url: page,
+			id: page,
+			createNew: true,
+			waiting: {autoShow: false},
+		});
+	})
+	
+	
+	//注册
+	mui('body').on('tap','#mobileReg',function(){
+		var page = "register.html"
+		mui.openWindow({
+			url: page,
+			id: page,
+			createNew: true,
+			waiting: {autoShow: false},
+		});
+	})
+ 	
+ 	//登录
+ 	mui('body').on('tap','#loginBtn',function(){
+ 		/* var page = "../../mine.html"
+ 		mui.openWindow({
+ 			url: page,
+ 			id: page,
+ 			createNew: true,
+ 			waiting: {autoShow: false},
+ 		}); */
+		
+		 wt = plus.nativeUI.showWaiting();
+ 		var loginName = document.getElementById('loginName').value;
+ 		console.log(loginName)
+		
+		var password = document.getElementById('password').value;
+ 		var info = plus.push.getClientInfo();
+ 		var cId = info.clientid;
+ 		console.log("cId==="+cId)
+		if(!loginName){
+ 			wt.close(); //关闭等待提示按钮
+ 			mui.toast('请输入账号');
+ 			return;
+ 		}
+		
+		
+ 		if(!password){
+ 			wt.close(); //关闭等待提示按钮
+ 			mui.toast('请输入密码');
+ 			return;
+ 		}
+		
+		localStorage.setItem("$loginName", loginName);
+		localStorage.setItem("$password", password);
+		console.log("loginName=="+loginName+"-------------password=="+password)
+		
+		var baseUrl = Util.BaseUrl;
+ 		mui.ajax({
+			url: baseUrl+'auth/login_token',
+			contentType: "application/json;charset=UTF-8",
+			type:'post',//HTTP请求类型
+			data:{
+ 				username:loginName,
+ 				password:password	
+ 			},
+ 			dataType:'json',//服务器返回json格式数据
+ 			timeout:10000,//超时时间设置为10秒；
+                        
+ 			 
+			success:function(data,textStatus,xhr){
+ 				//console.log("后台返回的33数据结果==="+JSON.stringify(data))
+				//服务器返回响应，根据响应结果，分析是否登录成功；
+ 				wt.close(); //关闭等待提示按钮
+ 				console.log("请求状态吗==="+xhr.status)
+				if(xhr.status==200){
+ 					localStorage.setItem("$token",data.token);
+ 				 	console.log("token="+localStorage.getItem("$token"));
+					var userInfo = data.user;
+					localStorage.setItem("$user",JSON.stringify(userInfo));
+					
+					var page = "../../mine.html";
+					mui.openWindow({
+						
+ 						id: page,
+ 						url: page,
+						waiting: {autoShow: false},
+ 						createNew: true 
+ 					});
+ 				}else{
+ 					mui.toast('网络错误');
+ 				}
+ 			},
+ 			error:function(xhr,type,errorThrown){
+ 				wt.close(); //关闭等待提示按钮
+ 				console.log(xhr.status)
+				mui.toast('网络错误')
+ 			}
+ 		}); 
+ 	})
+ 	
+ })
+
+</script>
+</html>
