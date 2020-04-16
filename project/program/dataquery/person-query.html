@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.css" rel="stylesheet" />
+		<link href="../../../css/mui.picker.min.css" rel="stylesheet"/>
+		<link href="../../../css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../css/lm_pages.css" />
+		<link rel="stylesheet" href="../../../css/lm_reset.css" />
+	    <link href="../../../css/warn/dataquery.css" rel="stylesheet"/>
+	
+	</head>
+
+	<body>
+	<div id="app">
+		<!--头部开始-->
+		<header class="mui-bar mui-bar-nav lm_mainbg lm_head_zb">
+			 <a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left lm_head_zb_color">
+			</a> 
+			<h1 class="mui-title lm_head_zb_title">人员查询</h1>
+			<!-- <b class=" mui-pull-right lm_head_zb_title" id="choseImage" style="margin-top: 3%;">上传</b> -->
+		</header>
+	    
+		    <div class="box mui-content">
+		        <div class="beijin">
+		            <div class="myTitle">
+		                <ul>
+		                    <li>
+		                        <img src="../../../img/dian_left_07.jpg" alt="">
+		                        <span>人员查询</span>
+		                        <img src="../../../img/dian_right_07.jpg" alt="">
+		                    </li>
+		                    <li>Q&nbsp;&nbsp;U&nbsp;&nbsp;E&nbsp;&nbsp;R&nbsp;&nbsp;Y&nbsp;</li>
+		                </ul>
+		            </div>
+		            <div class="myForm">
+		                <form action="">
+		                  <div class="myFormList">
+		                      <div class="myFormListImg" style="background-color: #2485e4">
+		                          <img src="../../../img/index_1.png" alt="">
+		                      </div>
+		                      <div class="startDate">
+		                          <input type="text"readonly="readonly"  id="mine" placeholder="矿井" /> 
+		                           
+		                          <img src="../../../img/xiala.png" alt="">
+		                      </div>
+		                  </div>
+						  
+						  <div class="myFormList">
+						      <div class="myFormListImg" style="background-color: #2485e4">
+						          <img src="../../../img/index_1.png" alt="">
+						      </div>
+						      <div class="startDate">
+						          <input type="text"readonly="readonly"  id="transportUnit" placeholder="部门" /> 
+						           
+						          <img src="../../../img/xiala.png" alt="">
+						      </div>
+						  </div>
+						  
+						  <div class="myFormList">
+						      <div class="myFormListImg" style="background-color: #2485e4">
+						          <img src="../../../img/index_1.png" alt="">
+						      </div>
+						      <div class="startDate">
+						          <!-- <input type="text" v-model="material" placeholder="物料" /> -->
+						          <input type="text" readonly="readonly"  id="material"   placeholder="位置">
+						          <img src="../../../img/xiala.png" alt="">
+						      </div>
+						  </div>
+						  
+							<div class="myFormList">
+		                        <div class="myFormListImg" style="background-color: #2485e4">
+		                            <img src="../../../img/index_4.png" alt="">
+		                        </div>
+		                        <div class="startDate">
+		                            <input type="text" readonly  id="dateTime"  placeholder="时间" />
+		                        </div>
+		                    </div>
+		                   <!-- <div class="myFormList">
+		                        <div class="myFormListImg" style="background-color: #2485e4">
+		                            <img src="../../../img/index_3.png" alt="">
+		                        </div>
+		                        <div class="startDate">
+		                            <input type="text" readonly  id="endDate"  placeholder="结束日期" />
+		                        </div>
+		                    </div> -->
+		                  
+		                   
+		                </form>
+		            </div>
+					
+		           
+		            	<input style="display:block;margin:0 auto;width: 85%;margin-top: 20%;" 
+		            	type="button" id="loginBtn" value="查&nbsp;&nbsp;询" class="langmin_Submit langmin_jgbg" />
+		            
+		        </div>
+		    </div>
+		   
+		</div>
+		
+	
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/mui.picker.min.js"></script>
+		<script src="../../../js/mui.poppicker.js"></script>
+		<script src="../../../js/vue.js"></script>
+		<script src="../../../js/vue-touch.js"></script>
+		<script src="../../../js/util.js"></script>
+		<script src="../../../js/jquery.min.js"></script>
+		<script src="../../../js/index.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		
+			//plusReady事件后，自动创建menu窗口；
+			
+	mui.plusReady(function() {
+		
+		//煤矿弹框
+		document.getElementById("mine").addEventListener('tap', function() {
+			var picker = new mui.PopPicker();
+			picker.setData([{
+				"text": "全部",
+				"value": "全部"
+			}, {
+				"text": "济二煤矿",
+				"value": "济二煤矿"
+			}, {
+				"text": "济三煤矿",
+				"value": "济三煤矿"
+			}, {
+				"text": "东滩煤矿",
+				"value": "东滩煤矿"
+			},
+			
+			]);
+			
+		
+			//let that = this
+			//var picker = new mui.PopPicker()
+			//picker.setData(that.datas)
+			picker.show(function (selectItems) {
+			    console.log(selectItems[0].value)
+			    document.getElementById("mine").value = selectItems[0].value
+				//that.material = selectItems[0].text
+			  
+				//vm.$data.purchase_waybill_entrustedunit = selectItems[0].text
+			})
+			
+			
+		})
+		
+		
+		//部门弹框
+		document.getElementById("transportUnit").addEventListener('tap', function() {
+			var picker = new mui.PopPicker();
+			picker.setData([{
+				"text": "全部",
+				"value": "全部"
+			}, {
+				"text": "部门一",
+				"value": "部门一"
+			}, {
+				"text": "部门二",
+				"value": "部门二"
+			}, {
+				"text": "部门三",
+				"value": "部门三"
+			},
+			
+			]);
+			
+		
+			//let that = this
+			//var picker = new mui.PopPicker()
+			//picker.setData(that.datas)
+			picker.show(function (selectItems) {
+			    console.log(selectItems[0].value)
+			    document.getElementById("transportUnit").value = selectItems[0].value
+				//that.material = selectItems[0].text
+			  
+				//vm.$data.purchase_waybill_entrustedunit = selectItems[0].text
+			})
+			
+			
+		})
+		
+		//安装位置
+		document.getElementById("material").addEventListener('tap', function() {
+			var picker = new mui.PopPicker();
+			picker.setData([{
+				"text": "全部",
+				"value": "全部"
+			}, {
+				"text": "位置一",
+				"value": "位置一"
+			}, {
+				"text": "位置二",
+				"value": "位置二"
+			}, {
+				"text": "位置三",
+				"value": "位置三"
+			},
+			
+			]);
+			
+			picker.show(function (selectItems) {
+			    console.log(selectItems[0].value)
+			    document.getElementById("material").value = selectItems[0].value
+			
+			})
+			
+			
+		})
+		
+		
+		//开始时间
+		document.getElementById("dateTime").addEventListener('tap', function() {
+		var dDate = new Date();
+		CurrentDate=dDate.getFullYear() + "-" + ((dDate.getMonth() + 1)<10?('0'+(dDate.getMonth() + 1)):(dDate.getMonth() + 1)) + "-" + (dDate.getDate()<10?"0"+dDate.getDate():dDate.getDate())
+		//dDate.setFullYear(2014, 7, 16);
+		var minDate = new Date();
+		minDate.setFullYear(2010, 0, 1);
+		var maxDate = new Date();
+		//maxDate.setFullYear(2016, 11, 31);
+		plus.nativeUI.pickDate(function(e) {
+			var d = e.date;
+			CurrentDate=d.getFullYear() + "-" + ((d.getMonth() + 1)<10?('0'+(d.getMonth() + 1)):(d.getMonth() + 1)) + "-" + (d.getDate()<10?"0"+d.getDate():d.getDate())
+			//count = 1;
+			 document.getElementById("dateTime").value = CurrentDate
+			//info.innerText = '您选择的日期是:' + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+		}, function(e) {
+			info.innerText = "您没有选择日期";
+		}, {
+			title: "请选择日期",
+			date: dDate,
+			minDate: minDate,
+			maxDate: maxDate
+		});
+	})
+	
+	//结束时间
+	document.getElementById("endDate").addEventListener('tap', function() {
+		var dDate = new Date();
+		CurrentDate=dDate.getFullYear() + "-" + ((dDate.getMonth() + 1)<10?('0'+(dDate.getMonth() + 1)):(dDate.getMonth() + 1)) + "-" + (dDate.getDate()<10?"0"+dDate.getDate():dDate.getDate())
+		//dDate.setFullYear(2014, 7, 16);
+		var minDate = new Date();
+		minDate.setFullYear(2010, 0, 1);
+		var maxDate = new Date();
+		//maxDate.setFullYear(2016, 11, 31);
+		plus.nativeUI.pickDate(function(e) {
+			var d = e.date;
+			CurrentDate=d.getFullYear() + "-" + ((d.getMonth() + 1)<10?('0'+(d.getMonth() + 1)):(d.getMonth() + 1)) + "-" + (d.getDate()<10?"0"+d.getDate():d.getDate())
+			//count = 1;
+			 document.getElementById("endDate").value = CurrentDate
+			//info.innerText = '您选择的日期是:' + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+		}, function(e) {
+			info.innerText = "您没有选择日期";
+		}, {
+			title: "请选择日期",
+			date: dDate,
+			minDate: minDate,
+			maxDate: maxDate
+		});
+	})
+	
+	
+		});
+				
+			
+		
+		</script>
+	</body>
+
+</html>

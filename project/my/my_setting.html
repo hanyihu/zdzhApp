@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>设置</title>
+		<link rel="stylesheet" href="../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../../css/lm_reset.css" />
+		<link rel="stylesheet" href="../../css/lm_pages.css" />
+		<style type="text/css">
+			.lm_yh_INfo_r i{
+				width: 90px;
+			}
+			.icon-fanhui-copy{
+				color: #999;
+			}
+			#userName{
+				background: transparent;
+			}
+		</style>
+	</head>
+
+	<body class="bg_fff" style="touch-action: none;">
+	   <div id="app"> 
+		<!--头部开始-->
+		<header class="mui-bar mui-bar-nav lm_mainbg lm_head_zb">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left lm_head_zb_color"  id="backBtn" ></a>
+			<h1 class="mui-title lm_head_zb_title">设置</h1>
+			
+		</header>
+		<!--头部结束-->
+		<!--主要内容-->
+		<div class="mui-content lm_bgf5">
+			<div class="lm_w94 lm_mhcm" id="personal" >
+
+				<!--头像-->
+				<div class="lm_yh_myInbig lm_bor_b">
+					<div class="lm_yh_myInT lm_juzhong " id="changeAvatar1">
+							<img style="width: 60px;height: 60px;" src="http://47.108.30.209:8081/tn-image/11.jpg"  style="width: 60x;height: 100px;"  id="userImg">
+						<!-- <div class="lm_yh_myInT_txt tex_cen lm_c_999 lm_f14" >
+							点击修改
+						</div> -->
+						 <input type="hidden" id="imgId" :value="personInfo.userAvatar" /> 
+					</div>
+				</div>
+				<!--头像-->
+				<!--带箭头的一行-->
+				<div class="lm_yh_INfo_r lm_bor_b lm_flex_bt">
+					<div class="lm_flex lm_yh_INfo_name">
+						
+						<i class="lm_f14">昵称    </i>
+						<input id="userName" type="text" placeholder="请输入你的昵称" class="lm_f14 lm_c_999" :value="personInfo.userName" />
+						<!-- <b class="lm_f14 lm_c_999">{{personInfo.userName}}</b> -->
+					</div>
+					<!-- <span class="mui-icon icon iconfont icon-fanhui-copy lm_f14"></span> -->
+				</div>
+				<!--带箭头的一行-->
+				<!--带箭头的一行-->
+				<div class="lm_yh_INfo_r lm_bor_b lm_flex_bt" id="change_tel" >
+					<div class="lm_flex lm_yh_INfo_name">
+						
+						<i class="lm_f14">手机号    </i>
+						<b class="lm_f14 lm_c_999">{{personInfo.loginName}}</b>
+					</div>
+					<span class="mui-icon icon iconfont icon-fanhui-copy lm_f14"></span>
+				</div>
+				<!--带箭头的一行-->
+				<!--带箭头的一行-->
+				<div class="lm_yh_INfo_r lm_bor_b lm_flex_bt" id="change_psw" >
+					<i class="lm_f14">修改密码    </i>
+					<span class="mui-icon icon iconfont icon-fanhui-copy lm_f14"></span>
+				</div>
+				<!--带箭头的一行-->
+				
+				<!--带箭头的一行-->
+				<div class="lm_WD_subbox lm_mar20_bot" style="margin-top: 38px;">
+					<input type="button" id="saveBtn" value="保存" class="lm_in_btn lm_in_btnbg3" />
+				</div>
+			</div>
+		</div>
+		
+		</div>
+		<!--主要内容-->
+
+		<script src="../../js/mui.min.js"></script>
+	    <script src="../../js/jquery.min.js"></script>
+		<script src="../../js/util.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		mui.init();
+		 var imgId =null;
+		var userId = localStorage.getItem('$userId');
+		var personal = new Vue({
+			el:'#app',
+			data:{
+				personInfo:''
+			},
+			created(){
+				this.personalData();
+			},
+			methods:{
+				personalData:function(){
+					var that = this;
+					mui.ajax(Util.BaseUrl + 'api/user/getUserInfor',{
+						data:{
+							userId:userId
+						},
+						dataType:'json',//服务器返回json格式数据
+						type:'post',//HTTP请求类型
+						timeout:10000,//超时时间设置为10秒；
+						headers:{'Content-Type':'application/x-www-form-urlencoded'},                
+						success:function(data){
+							//服务器返回响应，根据响应结果，分析是否登录成功；
+							if(data.code==0){
+								that.personInfo=data.data;
+							}else{
+								mui.toast(data.msg);
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							mui.toast('网络错误');
+						}
+					});
+				}
+			}
+		});
+		
+		
+		mui('body').on('tap', '#saveBtn', function() {
+			var inputs = document.getElementsByTagName("input");
+			for(i in inputs){
+				if(inputs[i].type == "text"){
+					inputs[i].blur();
+				}
+			}
+			
+		
+			var userName =  document.getElementById('userName').value;
+			console.log("用户头像地址=="+imgId)
+			var url = Util.BaseUrl + "api/user/saveSetting";
+			var params = {
+				userId:userId,
+				userName:userName,
+				userAvatar:imgId ,
+			};
+			mui.post(url,params,function(data){
+				if(data.code==0){
+					mui.toast(data.msg);
+					mui.openWindow({url: "my.html",createNew: true,waiting: {autoShow: false},});
+				}else{
+					mui.toast(data.msg);
+				}
+			});
+		});
+		
+		//返回 我的页面
+		mui('body').on('tap','#backBtn',function(){
+			
+			mui.openWindow({
+				id:'my',
+				url:'my.html',
+				createNew:true,
+				waiting: {autoShow: false},
+			});
+			
+		});
+		/* function func() {
+		    mui.openWindow({url:'my.html',createNew:true});
+		} */
+		
+		//修改手机号
+		mui('body').on('tap', '#change_tel', function() {
+			mui.openWindow({url: 'change_tel.html',createNew: true,waiting: {autoShow: false},});
+		});
+		
+		//修改密码
+		mui('body').on('tap', '#change_psw', function() {
+			mui.openWindow({url: 'change_psw.html',createNew: true,waiting: {autoShow: false}});
+		});
+		
+		
+	mui('body').on('tap', '#changeAvatar', function() {
+		page.imgUp();
+	});
+	
+	//弹出系统按钮选择框
+	var page = null;
+	page = {
+		imgUp: function() {
+			 if(mui.os.plus){
+			var a=[{
+			                title:'拍照'
+			            },{
+			                title:'从手机相册选择'
+			            }];
+			            plus.nativeUI.actionSheet({
+			                title:'修改头像',
+			                cancel:'取消',
+			                buttons:a
+			            },function(b){
+			                switch(b.index){
+			                    case 0:
+			                        break;
+			                    case 1:
+			                        //拍照
+			                        getImages();
+			                        break;
+			                    case 2:
+			                        //打开相册
+			                        galleryImages();
+			                        break;
+			                    default:
+			                        break;
+			                }
+			            },false); 
+						 }
+		
+		}
+	}
+	
+	
+	    //拍照 
+	            function getImage() { 
+	                var c = plus.camera.getCamera(); 
+	                c.captureImage(function(e) { 
+	                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+	                        var s = entry.toLocalURL() + "?version=" + new Date().getTime(); 
+	                        uploadHead(s); /*上传图片*/ 
+	                    }, function(e) { 
+	                        console.log("读取拍照文件错误：" + e.message); 
+	                    }); 
+	                }, function(s) { 
+	                    console.log("error" + s); 
+	                }, { 
+	                    filename: "_doc/head.png" 
+	                }) 
+	            } 
+	
+	
+	
+	
+	    //本地相册选择 
+	            function galleryImages() { 
+	                plus.gallery.pick(function(a) { 
+	                    plus.io.resolveLocalFileSystemURL(a, function(entry) { 
+	                        plus.io.resolveLocalFileSystemURL("_doc/", function(root) { 
+	                            root.getFile("head.png", {}, function(file) { 
+	                                //文件已存在 
+	                                file.remove(function() { 
+	                                    console.log("file remove success"); 
+	                                    entry.copyTo(root, 'head.png', function(e) { 
+	                                            var e = e.fullPath + "?version=" + new Date().getTime(); 
+	                                            uploadHead(e); /*上传图片*/ 
+	                                            //变更大图预览的src 
+	                                            //目前仅有一张图片，暂时如此处理，后续需要通过标准组件实现 
+	                                        }, 
+	                                        function(e) { 
+	                                            console.log('copy image fail:' + e.message); 
+	                                        }); 
+	                                }, function() { 
+	                                    console.log("delete image fail:" + e.message); 
+	                                }); 
+	                            }, function() { 
+	                                //文件不存在 
+	                                entry.copyTo(root, 'head.png', function(e) { 
+	                                        var path = e.fullPath + "?version=" + new Date().getTime(); 
+	                                        uploadHead(path); /*上传图片*/ 
+	                                    }, 
+	                                    function(e) { 
+	                                        console.log('copy image fail:' + e.message); 
+	                                    }); 
+	                            }); 
+	                        }, function(e) { 
+	                            console.log("get _www folder fail"); 
+	                        }) 
+	                    }, function(e) { 
+	                        console.log("读取拍照文件错误：" + e.message); 
+	                    }); 
+	                }, function(a) {}, { 
+	                    filter: "image" 
+	                }) 
+	            }; 
+	
+	
+	
+	
+	    //上传头像图片 
+	            function uploadHead(imgPath) { 
+	            	var mainImage = document.getElementById("userImg");
+	              imgId = document.getElementById("imgId").value;
+					console.log("imgId=="+imgId)
+					console.log("imgPath = " + imgPath); 
+	                mainImage.src = imgPath; 
+	                mainImage.style.width = "90px"; 
+	                mainImage.style.height = "90px"; 
+	     
+	                var image = new Image(); 
+	                image.src = imgPath; 
+	                image.onload = function() { 
+	              var imgData = getBase64Image(image); 
+	                    /*在这里调用上传接口*/ 
+	           var userId = localStorage.getItem("$userId")
+				console.log("imgData====="+imgData)
+				mui.ajax(Util.BaseUrl+'api/user/uploadImg',{
+					data:{
+						imgDatas:imgData
+						
+						},
+					dataType:'json',//服务器返回json格式数据
+					type:'post',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+					success:function(data){
+						console.log("解析上传头像地址=="+JSON.stringify(data))
+						imgId=data.msg;
+						console.log('上传成功'+imgId); 
+					},
+					error:function(xhr,type,errorThrown){
+						mui.toast('网络异常，请稍后再试！'); 
+					}
+				});
+	                } 
+	        } 
+	            //将图片压缩转成base64 
+	            function getBase64Image(img) { 
+	                var canvas = document.createElement("canvas"); 
+	                var width = img.width; 
+	                var height = img.height; 
+	                // calculate the width and height, constraining the proportions 
+	                if (width > height) { 
+	                    if (width > 100) { 
+	                        height = Math.round(height *= 100 / width); 
+	                        width = 100; 
+	                    } 
+	                } else { 
+	                    if (height > 100) { 
+	                        width = Math.round(width *= 100 / height); 
+	                        height = 100; 
+	                    } 
+	                } 
+	                canvas.width = width;   /*设置新的图片的宽度*/ 
+	                canvas.height = height; /*设置新的图片的长度*/ 
+	                var ctx = canvas.getContext("2d"); 
+	                ctx.drawImage(img, 0, 0, width, height); /*绘图*/ 
+	                var dataURL = canvas.toDataURL("image/png", 0.8); 
+	                return dataURL.replace("data:image/png;base64,", ""); 
+	            }    
+	
+			function photoerror(img){
+				img.src="img/mryh.png";
+				img.null;   //控制不要一直跳动
+			}
+
+			
+		</script>
+		
+	</body>
+
+</html>

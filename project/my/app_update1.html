@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.css" rel="stylesheet" />
+	    <link rel="stylesheet" href="../../css/lm_reset.css" />
+	    <link rel="stylesheet" href="../../css/lm_pages.css" />
+		<style>
+			#version{margin-top:20px;font-size: 18px;}
+			.check{margin-top: 58%;}
+			.check li{padding: 16px 11px;}
+			.check a{font-size: 20px;}
+			.check p{font-size: 18px;margin-top: 5px;}
+			progress {border-radius: 2px;border-left: 1px #ccc solid;border-right: 1px #ccc solid;border-top: 1px #aaa solid;background-color: #eee;}
+			progress::-webkit-progress-bar {background-color: #d7d7d7;}
+			progress::-webkit-progress-value {background-color: #aadd6a;}
+			.updateProDiv {display: none;}
+		</style>
+	
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav lm_mainbg lm_head_zb" id="backBtn">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left lm_head_zb_color">
+			</a>
+			<h1 class="mui-title lm_head_zb_title">系统更新</h1>
+		</header>
+		<div class="mui-content">
+		    
+		          
+		    <h2 style="margin-top: 30%; text-align: center;">
+				重大灾害预警平台系统
+			</h2>
+		     <button href="#" id="update" class="mui-btn-primary" 
+			 style="height: 40px;width: 100px;margin-top: 15%;margin-left: 35%;background: #0062CC;">检查更新</button>
+			
+			<div class="updateProDiv" 
+			style="height: 100px;width: 400px;margin-top: 15%;margin-left: 35%;">更新进度:
+			    <progress value="" max="" id="proDownFile"></progress>
+			    <span class="persent"></span>
+			</div>
+			
+			<!-- <ul class="mui-table-view check" id="check">
+		        <li class="mui-table-view-cell">
+		           
+		        </li>
+		    </ul> -->
+		    </div>
+			
+		<!-- -------------------------------------------------------------------------------------- -->	
+			
+			
+		<script src="../../js/mui.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/util.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		    var wgtVer=null;
+		    function plusReady(){ // 获取本地应用资源版本号
+		        plus.runtime.getProperty(plus.runtime.appid,function(inf){
+		            wgtVer=inf.version;
+		            version.innerHTML = '当前应用版本：'+wgtVer;
+		        });
+		    }
+		    if(window.plus){
+		        plusReady();
+		    }else{
+		        document.addEventListener('plusready',plusReady,false);
+		    }
+		
+		    var ver;
+		    //休眠方法
+		    function sleep(numberMillis) {
+		        var now = new Date();
+		        var exitTime = now.getTime() + numberMillis;
+		        while (true) {
+		            now = new Date();
+		            if (now.getTime() > exitTime)
+		                return;
+		        }
+		    }
+		    mui('body').on('tap', '#update', function() {
+		        plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+		            ver = inf.version;
+		            console.log("当前应用版本：" + ver);
+		            var url= Util.BaseUrl+'api/user/getAppVersion';
+		            var client='aaa';
+		            /* if(mui.os.ios) {client='ios';}
+		            else{client='android';} */
+		          // console.log("version====="+version+"------client==="+client)
+					mui.ajax(url,{
+		                data:{
+		                    version: ver,
+		                    client:client
+		                },
+		                dataType:'json',
+		                type:'POST',
+		                timeout:10000,
+		                success:function(data){
+							 console.log("banben=="+JSON.stringify(data))
+		                    if(data.code ==0){
+		                        var btnArray = ['是', '否'];
+		                      
+								mui.confirm('最新version是：' + data.data.version+',    是否更新', '发现最新版本', btnArray, function(z) {
+		                            if (z.index == 0) {
+		                                console.log('确定');
+		                                $('.updateProDiv').css('display', 'block');
+		                                $('#update').css('display', 'none');
+		                                console.log("data.data.url====="+data.data.url)
+										var dtask = plus.downloader.createDownload(data.data.url, {}, function(d, status) {
+		                                    console.log("status====="+status)
+											if (status == 200) {
+		                                        clearInterval(i);
+		                                        $('.persent').html("100%");
+		                                        plus.nativeUI.toast("正在准备环境，请稍后！");
+		                                        sleep(1000);
+		                                        var path = d.filename;//_downloads yijietong.apk
+		                                        console.log(d.filename);
+		                                        $('#update').css('display', 'block');
+		                                        $('.updateProDiv').css('display', 'none');
+		                                        plus.runtime.install(path); // 安装下载的apk文件
+		                                    } else {
+		                                        alert('Download failed:' + status);
+		                                    }
+		                                });
+		                                dtask.start();
+		                                var i = setInterval(function() {
+		                                    var totalSize = dtask.totalSize;
+		                                    var downloadedSize = dtask.downloadedSize;
+		                                    $('#proDownFile').attr('value', downloadedSize);
+		                                    $('#proDownFile').attr('max', totalSize);
+		                                    console.log(dtask.downloadedSize);
+		                                    console.log(dtask.totalSize);
+		                                }, 100); //1000为1秒钟
+		                            } else {
+		                                console.log('不确定');
+		                                return;
+		                            }
+		                        });
+		                    }
+		                    else{
+		                        alert(data.msg);
+		                    }
+		                },
+		                error: function(xhr, type, errerThrown) {
+		                    mui.toast('网络异常,请稍候再试');
+		                }
+		            });
+		
+		        });
+		    });
+		</script>
+	</body>
+
+</html>

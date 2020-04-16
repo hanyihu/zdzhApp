@@ -1,0 +1,149 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Microsoft YaHei";
+}
+
+.header {
+  width: 100%;
+  height: px;
+  background-image: url("../images/money_card02.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.header span {
+  display: inline-block;
+  width: 100%;
+  font-size: 17px;
+  color: #fff;
+  text-align: center;
+  line-height: 80px;
+}
+
+.card {
+  width: 100%;
+  height: 182px;
+  border-radius: 14px;
+  background: #fff;
+  padding: 20px 0 20px 35px;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  box-shadow: 0 1px 14px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card .card_top {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: left;
+  margin-bottom: 10px;
+}
+
+.card .card_top .card_top_img img{
+  width: 50px;
+  height: 50px;
+ 
+  background-size: 40px;
+}
+
+.card .card_top .card_top_news {
+  width: 74%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.card .card_bottom {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.card .card_bottom .card_bottom_tel {
+  width: 100%;
+  height: 50%;
+  display: flex;
+}
+
+.card .card_bottom .card_bottom_tel .card_bottom_tel_img {
+  width: 10%;
+  height: 100%;
+  background: url("../img/tel1.png") left no-repeat;
+  background-size: 35%;
+}
+
+.card .card_bottom .card_bottom_tel span {
+  font-size: 15px;
+  line-height: 36px;
+}
+
+.card .card_bottom .card_bottom_pos {
+  width: 100%;
+  height: 50%;
+  display: flex;
+}
+
+.card .card_bottom .card_bottom_pos .card_bottom_pos_img {
+  width: 10%;
+  height: 100%;
+  background: url("../img/pos.png") left no-repeat;
+  background-size: 40%;
+}
+
+.card .card_bottom .card_bottom_pos span {
+  font-size: 15px;
+  line-height: 36px;
+}
+
+.edit {
+  width: 100%;
+  height: 96px;
+  padding: 0 18px;
+  position: absolute;
+  top: 288px;
+}
+
+.edit .editPass {
+  width: 100%;
+  height: 50%;
+  border-top: 1px solid #ccc;
+}
+
+.edit .editPass .editPass_img {
+  width: 10%;
+  height: 100%;
+  float: left;
+  background: url("../img/account.png") left no-repeat;
+  background-size: 40%;
+}
+
+.edit .editPass .editPass_text {
+  float: left;
+  font-size: 15px;
+  line-height: 48px;
+}
+
+.edit .editPass .editPass_btn {
+  float: right;
+  width: 15%;
+  height: 100%;
+  background: url("../img/fanhui.png") right no-repeat;
+  background-size: 16%;
+}
+
+.edit .editTel_img {
+  background: url("../img/tel1.png") left no-repeat !important;
+  background-size: 38% !important;
+}
+
+.edit .editTel {
+  border-bottom: 1px solid #ccc;
+}

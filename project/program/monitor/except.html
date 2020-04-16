@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.css" rel="stylesheet" />
+	  
+	     <link rel="stylesheet" href="../../../css/warn/dataquery.css"/>
+	
+	</head>
+
+	<body>
+		<div id="app">
+		<!--头部开始-->
+		  <header class="mui-bar mui-bar-nav head-title">
+	  	  <a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left">
+			</a> 
+			<h1 class="mui-title">安全监测</h1>
+			<!-- <b class=" mui-pull-right lm_head_zb_title" id="choseImage" style="margin-top: 3%;">上传</b> -->
+		  </header>
+		
+		  <!--可拖动的选项卡-->
+		  <div  style="margin-top: 12%;">
+		   
+		         <div id="item2" >
+		               <ul class="mine_class monitor-card-ul" id="minelist" >
+		                   <li class="mui-table-view-cell-1 monitor-hei"  >
+		         			  <div class="monitor-card" >
+		         				  <div >
+		         				    <div class="monitor-card-title" >
+		         				      &nbsp;&nbsp;&nbsp;报警与断电异常					  
+		         				    </div>
+		         				  <div class="monitor-card-right" >
+		         				    <span style="color:#008000 ">2</span>
+		         				    <span >条 </span>
+		         				  </div>
+		         				  
+		         				  </div>
+		         			  </div>
+		         		  </li>
+		                   <li class="mui-table-view-cell-1 monitor-hei" >
+		         			  <div class="monitor-card" >
+		         				 <div>
+		         				   <div class="monitor-card-title" >
+		         				     &nbsp;&nbsp;&nbsp;系统异常						  
+		         				   </div>
+		         				 <div class="monitor-card-right" >
+		         				   <span style="color: #008000;">5</span>
+		         				   <span >条 </span>
+		         				 </div>
+		         				 
+		         				 </div>
+		         			  </div>
+		         		  </li>
+		         		  <li class="mui-table-view-cell-1 monitor-hei" >
+		         		  		<div class="monitor-card" style="height: 100%";>
+		         		  			<div style="width: 100%;">
+		         		  			  <div class="monitor-card-title" >
+		         		  			    &nbsp;&nbsp;&nbsp;馈电异常				  
+		         		  			  </div>
+		         		  			<div class="monitor-card-right" >
+		         		  			  <span style="color: #008000;">0</span>
+		         		  			  <span >条 </span>
+		         		  			</div>
+		         		  			
+		         		  			</div>
+		         					 
+		         		  		 </div>
+		         		  </li> 
+		         		 
+		         		  
+		               </ul>			 
+		         	  
+		         </div>
+		      
+		  </div>
+		
+		<nav class="mui-bar mui-bar-tab" style="background: white;">
+			<a id="station" class=" mui-tab-item "  href="#tabbar">
+				 <span class="mui-icon  mui-icon-map "></span> 
+				<span class="mui-tab-label" >分站</span>
+			</a>
+		
+			<a id="type" class="mui-tab-item  ">
+				 <span class="mui-icon  mui-icon-list mui-spin "></span> 
+				<span class="mui-tab-label" >类型</span>
+			</a>
+		
+		    <a id="warn" class="mui-tab-item  ">
+			   <span class=" mui-icon mui-icon-info mui-spin "></span> 
+			   <span class="mui-tab-label">报警断电</span>
+		    </a>
+			<a id="except" class="mui-tab-item  ">
+			   <span class="mui-icon mui-icon-spinner-cycle mui-spin mui-active "></span> 
+			   <span class="mui-tab-label" style="color:#1885F2;">系统异常</span>
+			</a>	
+		</nav>
+		</div>
+		
+		<script src="../../../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			
+			mui.plusReady(function () {
+			
+			})
+			//安全监测--
+			mui("body").on("tap", ".mui-table-view-cell-1", function(){
+				var page = "monitor-except.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {autoShow: false},
+				});
+				
+			})
+				
+				
+				//返回到main主页
+				mui("body").on("tap", "#backFeedBack", function() {
+					var page = "../../../main.html"
+					mui.openWindow({
+						url: page,
+						id: page,
+						createNew: true,
+						waiting: {
+							autoShow: false
+						},
+					});
+				})
+				
+				//跳转到分站列表
+				mui("body").on("tap", "#station", function() {
+					var page = "station.html"
+					mui.openWindow({
+						url: page,
+						id: page,
+						createNew: true,
+						waiting: {
+							autoShow: false
+						},
+					});	
+				})
+				
+			//跳转到类型列表
+			mui("body").on("tap", "#type", function() {
+				var page = "type.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});	
+			})
+			
+			//跳转到报警断电列表
+			mui("body").on("tap", "#warn", function() {
+				var page = "warn.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});	
+			})
+			
+		</script>
+	</body>
+
+</html>

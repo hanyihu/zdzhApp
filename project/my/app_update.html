@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../css/tingnan/tingnan.css" rel="stylesheet" />
+		<style>
+				.title{
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+		</style>
+	</head>
+
+	<body>
+	<header class="mui-bar mui-bar-nav tn_head_color">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left tn_head_font"></a>
+		<h1 class="mui-title tn_head_font" >更新</h1>
+	</header>
+    <div id="app">
+	  <div class="mui-content"> 
+	  <h2 style="margin-top: 30%; margin-left: 13%;">
+	   重大灾害预警平台系统
+	  </h>
+	  
+         
+	  </div>
+	</div>
+		<script src="../../js/mui.min.js"></script>
+		<script src="../../js/vue.js"></script>
+		<script src="../../js/util.js"></script>
+		<script src="../../js/update.js"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+			
+				mui.init();
+			var personal = new Vue({
+				el:'#app',
+				data:{
+					
+				},
+				created(){
+					this.checkUpdate();
+				},
+				methods:{
+					checkUpdate:function(){
+						
+					}    
+				}
+			});
+			
+			
+			
+		/* 	
+			mui.plusReady(function(){
+				
+				checkUpdate();
+			})
+			 */
+		</script>
+	</body>
+
+</html>

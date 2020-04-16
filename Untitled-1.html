@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test</title>
+</head>
+<body>
+  <input type="text" id="url" style="width: 500px; height: 26px;" />
+  <br/>
+  <button id="trigger">发送请求</button>
+  <button id="login">登录</button>
+  <ul id="apis">
+    <li><a href="javascript:;">http://10.61.37.30:8000/api/mine</a></li>
+  </ul>
+  <hr>
+  <h2>请求响应</h2>
+  <div id="resp"></div>
+  <hr>
+  <h2>登录token</h2>
+  <div id="token"></div>
+  <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    var token = '';
+
+    $('#apis>li>a').on('click', function () {
+      $('#url').val($(this).text());
+    })
+
+    $('#trigger').on('click', function () {
+      if (!$('#url').val()) {
+        alert('请输入请求地址');
+        return;
+      }
+
+      $.ajax({
+        // http://10.61.37.30:8000/api/mine
+        url: $('#url').val(),
+        method: 'get',
+        headers: {
+          "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU4NDMzNDY5MiwiaWF0IjoxNTg0MzI3NDkyfQ.AFw5_tRVWI4LJyKYv5PKEtLxUt1wui_bcWCOcNVa2loM3YqC3mSk46g8e0Gfd_34yvPUFTOQgEkPaH8iBgeLbw"
+        },
+        success: function (res) {
+          $('#resp').text(JSON.stringify(res));
+        },
+      })
+    });
+
+    $('#login').on('click', function () {
+      $.ajax({
+        url: 'http://10.61.37.30:8000/auth/login_token',
+        method: 'post',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify({"username":"admin","password":"123456"}),
+        success: function (res) {
+          token = res.token;
+          $('#token').text(token);
+        },
+        error: function (xhr, status, error) {
+          if (xhr.responseJSON) {
+            alert(xhr.responseJSON.message);
+          } else {
+            alert('请求错误');
+          }
+        }
+      })
+    });
+  </script>
+</body>
+</html>

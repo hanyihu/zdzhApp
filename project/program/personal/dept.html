@@ -1,0 +1,346 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.css" rel="stylesheet" />
+	   
+	     <link rel="stylesheet" href="../../../css/warn/dataquery.css"/>
+	
+	</head>
+
+	<body>
+		<div id="app">
+		<!--头部开始-->
+		  <header class="mui-bar mui-bar-nav head-title">
+	  	  <a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left">
+			</a> 
+			<h1 class="mui-title ">人员定位</h1>
+		<!-- 	<b class=" mui-pull-right lm_head_zb_title"  style="margin-top: 3%;"></b> -->
+		  </header>
+		
+		  <!--可拖动的选项卡-->
+		  <div  style="margin-top: 12%;">
+		     
+		      <div >
+				 <div class="personal-total">
+				 	<div class="personal-totalcount">
+				 		<div class="personal-totalcount-1" id="totalcount">{{personInfo.realCount}}</div>
+				 				
+				 		<div class="personal-totalcount-2">总人数</div>
+				 	</div>
+				 	<div class="personal-totalcount" id="classLing1">
+				 		<div class="personal-boss" id="classLing"></div>
+				 					
+				 		<div class="personal-totalcount-2">带班领导</div>
+				 	</div>
+				 	<div class="personal-totalcount">
+				 		<div class="perspnal-outcount" id="totalcount">{{personInfo.overtimeCount}}</div>
+				 					
+				 		<div class="personal-totalcount-2">超时人数</div>
+				 	</div>
+				 	
+				 </div>
+					<div class="title" id="divnodata" >
+						
+					</div>
+					
+					<div id="pullrefresh">
+					    <ul class="mine_class  monitor-card-ul" id="minelist"> </ul>			  
+		         	 </div> 
+		        
+		      </div>
+			  <nav class="mui-bar mui-bar-tab" style="background: white;">
+			  	<a id="station" class=" mui-tab-item "  href="#tabbar">
+			  		 <span class="mui-icon mui-icon mui-icon-map "></span> 
+			  		<span class="mui-tab-label" >分站</span>
+			  	</a>
+			  
+			  	<a id="dept" class="mui-tab-item  ">
+			  		 <span class="mui-icon mui-icon mui-icon-list mui-active"></span> 
+			  		<span class="mui-tab-label" style="color:#1885F2;">部门</span>
+			  	</a>
+			  
+			  </nav>
+			  
+		  </div>
+		 
+		 
+		</div>
+		
+		<script src="../../../js/mui.js"></script>
+		<script src="../../../js/Util.js"></script>
+		<script src="../../../js/vue.js"></script>
+		<script src="../../../js/mui.picker.js"></script>
+		<script src="../../../js/mui.poppicker.js"></script>
+		<script src="../../../js/jquery-1.11.1.min.js"></script>
+		
+		<script type="text/javascript">
+			
+			/* 人员统计 */
+			var personal = new Vue({
+				el:'#app',
+				data:{
+					personInfo:''
+				},
+				created(){
+					this.getUserInfo();
+				},
+				methods:{
+					getUserInfo:function(){
+						var that = this;
+						var token = "Bearer "+localStorage.getItem("$token")
+						var mine_id = localStorage.getItem("$mineId")
+						console.log("mine_id==="+mine_id);
+						console.log("token==="+token);
+						
+						mui.ajax({
+							url:Util.BaseUrl + 'api/staffLocateRecord/realtime/stat?mineId='+mine_id,
+						   
+							headers: {'Authorization': token },
+							dataType:'json',//服务器返回json格式数据
+							type:'get',//HTTP请求类型
+							timeout:10000,//超时时间设置为10秒；
+							contentType: "application/json;charset=UTF-8",                
+							success:function(data,textStatus,xhr){
+								console.log("获取的井下人员数量=="+JSON.stringify(data))
+								//服务器返回响应，根据响应结果，分析是否登录成功；
+								if(xhr.status==200){
+									console.log(data.leaderList==false)
+									var list =data;
+									if(data.leaderList==false){
+										$("#classLing").html("无")
+									}else{
+										var list = data.leaderList;//获取集合数据
+										var obj = list[0];
+										$("#classLing").html(obj.person_name)
+										//console.log("结合"+list.leaderList)
+									}
+									var leader = JSON.stringify(data.leaderList)
+									console.log("带班领导集合信息=="+leader)
+									//跳转到带班领导界面
+									mui('body').on('tap','#classLing1',function(){
+										var page = "personal-classling.html"
+										mui.openWindow({
+											url: page,
+											id: page,
+											createNew: true,
+											extras: {
+											         leader: leader
+											        },
+											waiting: {autoShow: false},
+										});
+									})
+									
+									that.personInfo=data;
+								}else{
+									mui.toast('网络错误');
+								}
+							},
+							error:function(xhr,type,errorThrown){
+								console.log(xhr.status)
+								mui.toast('网络错误');
+							}
+						});
+					}    
+				}
+			});
+			
+			
+			var count = 1;
+			var totalpage=1;
+			var isLoadMore=false;
+			(function(mui, doc) {
+				mui.init({
+					swipeBack: true ,
+									pullRefresh: {
+										container: '#pullrefresh',
+										down: {
+											style:'circle',
+											callback: pulldownRefresh
+										},
+										up: {
+											//auto:true,
+											contentrefresh: '正在加载...',
+											callback: pullupRefresh
+										}
+									}
+				});
+			mui.plusReady(function() {
+				getSubstation()
+			});
+			
+			}(mui, document));
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					count=1;
+					isLoadMore=false;
+				
+					getSubstation();
+					
+				}, 1000);
+			}
+			
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+				isLoadMore=true;
+				count++;
+				
+					if(count<=totalpage)
+					  {
+					  	getSubstation();
+					  }
+					  else
+					  {
+					  	//count=totalpage;
+					  	mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					  }
+				}, 1000);
+			}
+			
+			
+						function getSubstation() {
+							var ul = document.getElementById('minelist');
+							var size = 10; //每页的条数
+							var token = "Bearer "+localStorage.getItem("$token")
+							var mine_id = localStorage.getItem('$mineId');
+							console.log("现在是第 "+count+" 页数据")
+							
+							var baseUrl=Util.BaseUrl;
+							mui.ajax({
+								url:baseUrl + 'api/staffEmployee/realtime/dept/stat?page='+count+'&size='+size+'&mineId='+mine_id,
+														   
+								headers: {'Authorization': token },
+								dataType:'json',//服务器返回json格式数据
+								type:'get',//HTTP请求类型
+								timeout:10000,//超时时间设置为10秒；
+								contentType: "application/json;charset=UTF-8",     
+							   
+							success:function(data,textStatus,xhr){
+								//cityPicker3.setData(data);
+								console.log("获取的部门列表数据=="+JSON.stringify(data))
+								if(data==null||data.length==0||data.total==0)
+								{
+								
+									document.getElementById("divnodata").hidden=false;
+									if(!isLoadMore)
+								 {
+									 
+								 	mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+								}
+								
+									ul.innerHTML = '';
+									return;
+								}
+								
+								if(!isLoadMore)
+								{
+								
+									ul.innerHTML = '';
+							    }
+								var html = '';
+								document.getElementById("divnodata").hidden=true;
+								var totalpage_1 = data.totalCount%size //取余数
+								console.log("是否整除=="+totalpage_1===0)
+								if(totalpage_1===0){
+									totalpage = data.totalCount/size 
+								}else{
+									totalpage = Math.ceil(data.totalCount/size);//向上取整数
+								}
+								
+								console.log("获取的总页数=="+totalpage)
+								mui.each(data.content, function(index, item) {
+									
+									html +=  '<li class="mui-table-view-cell-1 monitor-hei" data-id= "'+item.person_dept+'">' + 
+							                  ' <div class="monitor-card" style="height: 100%";>' +
+								                ' <div style="width: 100%;"> ' +
+								                ' <div class="monitor-card-title" >'+
+								                   ' <div class="monitor-card-title-icon">'+
+								                 		'<img src="../../../img/icon_setup.png" />'+
+								                 	'</div>'+
+								                 '<div class="monitor-card-title-1">'+item.person_dept+'</div>'+
+								                 															  
+								                  '</div>'+ 
+								                  ' <div class="monitor-card-right" > ' +
+								                   '  <span style="color: #008000;font-size: 100%;"> '+ item.locate_count +'</span>' +
+								                    ' <span style="font-size: 100%;">   人 </span> ' +
+								                    '</div> ' +
+								 
+								               ' </div> '+
+							                  '</div>'+
+						                    ' </li> ';
+								});
+								ul.innerHTML += html;
+			                    mui(".mine_class").off("tap");
+								mui('.mine_class').on('tap', '.mui-table-view-cell-1', function(e) {
+									var _self = this;
+									var deptName = _self.getAttribute('data-id');
+									//localStorage.setItem('$deptName', deptName);
+									//console.log("获取的部门名称=="+localStorage.getItem('$deptName'))
+									mui.openWindow({
+										url: 'personal-dept.html',
+										id: 'personal-dept.html',
+										extras: {
+										         deptName: deptName
+										        },
+										createNew: true,
+										waiting: {autoShow: false},
+									});
+			
+								})
+								
+								if(!isLoadMore)
+								 {
+								 	mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+								}
+								 else
+								 {
+								 	mui('#pullrefresh').pullRefresh().endPullupToRefresh(count>totalpage);
+								 }
+								  mui('#pullrefresh').pullRefresh().refresh(true); //激活上拉
+								 },
+								 error:function(xhr,type,errorThrown){
+								 	//wt.close(); //关闭等待提示按钮
+								 	console.log(xhr.status)
+								 	mui.toast('网络错误')
+								 }
+							});
+						}
+		
+			//跳转到分站界面
+			mui('body').on('tap','#station',function(){
+				var page = "station.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {autoShow: false},
+				});
+			})
+			
+			//返回到main主页
+			mui("body").on("tap", "#backFeedBack", function() {
+				var page = "../../../main.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});
+			})
+			
+			
+		</script>
+	</body>
+
+</html>

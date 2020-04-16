@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.css" rel="stylesheet" />
+	
+	 <link rel="stylesheet" href="../../../css/warn/dataquery.css" />
+	</head>
+
+	<body>
+		<!--头部开始-->
+		 <header class="mui-bar mui-bar-nav head-title">
+		   <a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left ">
+					</a> 
+					<h1 class="mui-title ">带班领导</h1>
+					<!-- <b class=" mui-pull-right lm_head_zb_title" id="choseImage" style="margin-top: 3%;">上传</b> -->
+		 </header>
+		
+		<div id="pullrefresh" style="margin-top: 44px;"> 
+			<div  id="divnodata" style="font-size: 20px;color: red;text-align: center;margin-top: 12%;"></div>
+			<ul class="mine_class monitor-card-ul" id="minelist">
+			</ul> 	
+		</div>
+		  
+		
+		<script src="../../../js/mui.js"></script>
+		<script src="../../../js/Util.js"></script>
+		<script src="../../../js/vue.js"></script>
+		<script src="../../../js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+				getSubstation();
+			})
+						function getSubstation() {
+							var ul = document.getElementById('minelist');
+						
+							var self = plus.webview.currentWebview();
+							var html = '';
+							
+							var data = JSON.parse(self.leader);
+							
+							if(data==null||data.length==0||data.total==0)
+							{
+							$("#divnodata").html("无数据!");
+							
+							}
+							
+							//console.log("接受的带班领导参数leader=="+leader)
+								mui.each(data, function(index, item) {
+									
+					 html +=  	'<li class="mui-table-view-cell-1" style="height:150px ;" >' +
+					              '<div class="monitor-card2" >' +
+						           '<div style="width: 100%;">' +
+						           '<div class="monitor-card-title">&nbsp;&nbsp;&nbsp;'+ item.person_name	+'</div>' +
+						          '<div class="monitor-card-right" > ' +
+						       
+						         ' <span id="trajectory" style="font-size: 100%; color: #007AFF;" data-id="'+item.person_card+'" data-name="'+item.person_name+'"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;轨迹 </span> ' +
+						         '</div>' + 
+						          '</div>' +
+						     '<hr color="#357EBD"> '+
+						   ' <div class="personal-station-2" style="margin-top: 3%"> ' +
+						   '<div class="personal-station-1">&nbsp;&nbsp;下井时间:</div> ' +
+						    ' <div class="personal-station" > ' +item.mine_entertime + '&nbsp;&nbsp;</div>' + 
+						  '</div>' +
+				
+						'<div class="personal-station-2"> '+
+							'<div class="personal-station-1">&nbsp;&nbsp;所属站点:</div> ' +
+						   ' <div class="personal-station" > '+item.area_name  + '&nbsp;&nbsp;</div>' +
+						'</div> '+
+						'<div class="personal-station-2">'  +
+							'<div class="personal-station-1">&nbsp;&nbsp;区域类型:</div>'+
+						   ' <div class="personal-station" >'+item.area_type +'&nbsp;&nbsp;</div>'+
+						
+						'</div>'+
+					'</div>' +
+				 '</li>' 
+				
+								});
+								ul.innerHTML += html;
+			                     mui(".mine_class").off("tap");//此功能主要用于解决重复执行on事件问题
+								mui('.mine_class').on('tap', '#trajectory', function(e) {
+									
+									var _self = this;
+									var personCard = _self.getAttribute('data-id');
+									var personName = _self.getAttribute('data-name');
+									console.log("人员编号=="+personCard+"===人员姓名=="+personName)
+									mui.openWindow({
+										url: 'personal-trajectory.html',
+										id: 'personal-trajectory.html',
+										extras:{
+										   	personCard:personCard,
+											personName:personName
+										},
+										
+										createNew: true,
+										waiting: {autoShow: false},
+									});
+			
+								})
+
+							
+						}
+		</script>
+	</body>
+
+</html>

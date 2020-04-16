@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>注册</title>
+		<link rel="stylesheet" href="../../css/mui.min.css" />
+		<link rel="stylesheet" href="../../fonts/iconfont.css" />
+		<link rel="stylesheet" href="../../css/lm_reset.css" />
+		<link rel="stylesheet" href="../../css/lm_pages.css" />
+		<style type="text/css">
+			.lm_yh_login_row .lm_flex{
+				-webkit-align-items: center;
+				align-items: center;
+			}
+		</style>
+	</head>
+
+	<body class="bg_fff lm_login_body" >
+        <div id="app">
+		<!--主要内容-->
+		<div class="mui-content" style="background-color: transparent;">
+			<div class="lm_login_bg">
+				<div class="lm_login_k">
+				</div>
+				<img style="width: 80px ;height: 80px;" src="../../img/tingnan/tingnan.png" />
+			</div>
+
+			<!--01-->
+			<div class="lm_w90 lm_qt_wjmm" style="padding-top: 5px;">
+				<div class="lm_mh_lb bg_fff">
+				<!--1个输入框开始-->
+				<div class="lm_yh_login_row lm_flex lm_bor_b  " >
+					<span class="icon iconfont icon-mobile lm_f16"></span>
+					<div class="input_parent">
+						<input type="text" placeholder="手机号" class="lm_f14" id="mobile"/>
+					</div>
+				</div>
+				<div class="lm_yh_login_row lm_flex lm_bor_b  " >
+					<span class="icon iconfont icon-mobile lm_f16"></span>
+					<div class="input_parent">
+						<input type="text" placeholder="用户名" class="lm_f14" id="userName"/>
+					</div>
+				</div>
+				<!--1个输入框结束-->
+				<!--1个输入框开始-->
+				<!-- <div class="lm_yh_login_row lm_flex_bt lm_bor_b  " >
+					<div class="lm_flex">
+						
+					<span class="icon iconfont icon-yaoqingma lm_f16"></span>
+					<div class="input_parent">
+						<input type="text" placeholder="图形验证码" class="lm_f14" id="inputImgCode"/>
+					</div>
+					</div>
+					<img src="../../images/tuxingma.png" class="tuxingma" id="imgCode"/>
+				</div> -->
+				<!--1个输入框结束-->
+				<!--1个输入框开始-->
+				<!-- <div class="lm_yh_login_row lm_flex_bt lm_bor_b  " >
+					<div class="lm_flex">
+						
+					<span class="icon iconfont icon-yaoqingma lm_f16"></span>
+					<div class="input_parent">
+						<input type="text" placeholder="手机验证码" class="lm_f14" id="mobileCode"/>
+					</div>
+					</div>
+					<button type="button" class="lm_yanzheng" id="sendMobileCode">获取验证码</button> 
+				</div> -->
+				<!--1个输入框结束-->
+				<!--1个输入框开始-->
+				<div class="lm_yh_login_row lm_flex lm_bor_b  " >
+					<span class="icon iconfont icon-mima lm_f16"></span>
+					<div class="input_parent">
+						<input type="password" placeholder="密码" class="lm_f14" id="pwd" />
+					</div>
+				</div>
+				<!--1个输入框结束-->
+				<!--1个输入框开始-->
+				<div class="lm_yh_login_row lm_flex lm_bor_b  " >
+					<span class="icon iconfont icon-mima lm_f16"></span>
+					<div class="input_parent">
+						<input type="password" placeholder="确认密码" class="lm_f14" id="confirmPwd"/>
+					</div>
+				</div>
+				<!--1个输入框结束-->
+				
+			
+				</div>
+
+				<div class="lm_WD_subbox lm_mar20_bot" style="margin-top: 38px;">
+					<input type="button" value="注册" class="langmin_Submit langmin_jgbg" id="reg" @click="commit()"/>
+				</div>
+
+                 <div class="lm_WD_subbox lm_mar20_bot" style="margin-top: 38px;">
+					<input type="button" value="返回" class="langmin_Submit langmin_jgbg" @click="back()"/>
+				</div>
+			</div>
+			<!--01-->
+          </div>
+		</div>
+		<!--主要内容-->
+
+		
+	</body>
+
+<script src="../../js/mui.min.js"></script>
+<script type="text/javascript" src="../../js/vue.js"></script>
+
+<script src="../../js/util.js"></script>
+	
+<script type="text/javascript">
+  var vm = new Vue({
+  	el:"#app",
+  	data(){},
+  	methods:{	
+  		//首页
+  		back:function(){
+  			mui.openWindow({
+  				id: 'login.html',
+  				url: '../login.html',
+  				createNew:true,
+  				extras: {		
+  				}
+  		    })
+  		},
+		//注册
+		commit:function(){
+			//手机号
+			var mobile = document.getElementById('mobile').value;
+		    console.log("手机号==="+mobile)
+			
+			var pwd = document.getElementById('pwd').value;
+			console.log("密码==="+pwd)
+			var confirmPwd = document.getElementById('confirmPwd').value;
+			console.log("确认密码==="+confirmPwd)
+			var userName = document.getElementById('userName').value;
+			console.log("用户名==="+userName)
+			
+			/* if(!(mobile&&pwd&&confirmPwd&userName)){
+				mui.toast("信息不完整");
+				
+				
+			} */
+			if (!((/^1\d{10}$/).test(mobile))){
+				mui.toast('手机号码格式不正确',{duration:'long',type:'div'});
+				document.getElementById("reg").disabled=false;
+				return ;
+			}
+			
+			if(pwd != confirmPwd){
+				mui.toast('两次密码不一致，请重新输入',{duration:'long',type:'div'});
+				
+			}
+			
+			var url = Util.BaseUrl + "api/login/register";
+			var params = {
+					userName:userName,
+					mobile:mobile,
+					pwd:pwd
+			};
+			mui.post(url,params,function(data){
+				if(data.code==0){
+					mui.toast(data.msg);
+					mui.openWindow({
+						id: 'login',
+						url: '../login.html',
+						createNew: true,
+						waiting: {autoShow: false},
+						});
+				}else{
+					mui.toast(data.msg);
+					document.getElementById("reg").disabled = false;
+				}
+			});
+			
+			
+		},
+  	}
+  })
+  </script>
+</html>

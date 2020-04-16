@@ -1,0 +1,207 @@
+.header {
+  width: 100%;
+  height: 160px;
+  background-image: url("../img/tingnan/ting2.png");
+  background-position: center;
+  background-size: cover; }
+  .header span {
+    display: inline-block;
+    width: 100%;
+    font-size: 17px;
+    color: #fff;
+    text-align: center;
+    line-height: 80px; }
+
+.card {
+  width: 100%;
+  height: 30%;
+  position: absolute;
+  top: 15%; }
+  .card .cardBox {
+    width: 90%;
+    height: 90%;
+    border-radius: 25px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 200; }
+    .card .cardBox .cardBox-text {
+      font-size: 15px;
+      color: #000000;
+      opacity: 0.7;
+      text-align: center;
+      margin: 30px 0 20px 0; }
+    .card .cardBox .cardBox-text1 {
+      font-size: 25px;
+      color: #2385e4;
+      text-align: center; }
+    .card .cardBox .cardBox-text2 {
+      width: 100%;
+      height: auto;
+      margin-top: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .card .cardBox .cardBox-text2 .cardBox-text2-left {
+        width: 50%;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-right: 1px solid #ccc; }
+        .card .cardBox .cardBox-text2 .cardBox-text2-left .title {
+          font-size: 12px;
+          color: #000000;
+          opacity: 0.7;
+          margin-right: 10px; }
+        .card .cardBox .cardBox-text2 .cardBox-text2-left .num {
+          color: #2385e4;
+          font-size: 18px; }
+      .card .cardBox .cardBox-text2 .cardBox-text2-right {
+        width: 50%;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+        .card .cardBox .cardBox-text2 .cardBox-text2-right .title {
+          font-size: 12px;
+          color: #000000;
+          opacity: 0.7;
+          margin-right: 10px; }
+        .card .cardBox .cardBox-text2 .cardBox-text2-right .num {
+          color: #2385e4;
+          font-size: 18px; }
+  .card .cardBox1 {
+    width: 80%;
+    height: 30%;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 65%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 100; }
+  .card .cardBox2 {
+    width: 70%;
+    height: 40%;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 60%;
+    left: 0;
+    right: 0;
+    margin: auto; }
+
+.titles{
+	width: 100%;
+	height: 10%;
+	
+	position: absolute;
+	
+	top:50%;
+	text-align: center;
+	
+}
+.titles1{
+	width: 100%;
+	height: 10%;
+	
+	position: absolute;
+	
+	top:70%;
+	text-align: center;
+	
+}
+
+.directory {
+  padding: 20px;
+  width: 100%;
+  height: 10%;
+  background: #fff;
+  position: absolute;
+  top: 55%;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap; }
+  .directory .directoryLis {
+    list-style: none;
+    width: calc(100% / 4);
+    height: 100%;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .directory .directoryLis img {
+      display: block;
+      width: 45px;
+      height: 45px; }
+    .directory .directoryLis span {
+      font-size: 12px;
+      margin-top: 2px ; }
+
+.directory1 {
+  padding: 20px;
+  width: 100%;
+  height: 10%;
+  background: #fff;
+  position: absolute;
+  top: 75%;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap; }
+  
+  .directory1 .directoryLis1 {
+    list-style: none;
+    width: calc(100% / 4);
+    height: 80%;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .directory1 .directoryLis1 img {
+      display: block;
+      width: 45px;
+      height: 45px; }
+    .directory1 .directoryLis1 span {
+      font-size: 12px;
+      margin-top: 2px ; } 
+ 
+
+.tab {
+  width: 100%;
+  height: 52px;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  padding: 0;
+  margin: 0; }
+  .tab .tabLis {
+    list-style: none;
+    width: calc(100% /5);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .tab .tabLis img {
+      display: block;
+      width: 20px;
+      height: 20px; }
+    .tab .tabLis span {
+      font-size: 12px;
+      line-height: 14px;
+      margin-top: 6px; }
+  .tab .active {
+    color: #2385e4; }
+
+/*# sourceMappingURL=index1.css.map */

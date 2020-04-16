@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../css/lm_pages.css" />
+		<link rel="stylesheet" href="../../../css/lm_reset.css" />
+	  <style >
+        .point-title {
+			  width: 100%;
+			  height: 40px;
+			  background:whitesmoke;
+			  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.3); 
+			  position: absolute; 
+			  top:44px;
+			  left: 0;
+			  right: 0;
+			  margin: auto;
+			  display: inline;
+			  
+		  }
+		  .point-title div{
+			  height: 100%;
+			  line-height: 40px;
+			   display: inline;
+			   font-size: 150%;
+			   font-weight: 500;
+		  }
+		  .point-name{
+			  width: 50%;
+			  height: 20px;
+			  font-size: 150%;
+			 /* float:left; */
+			  font-weight: 700;
+		  display: inline-block;
+		  }
+		  .point-warn {
+			  width: 15%;
+			  height: 20px;
+			 border-radius: 10px;
+			 display: inline-block;
+			 text-align: center;
+			  font-size: 130%;
+			  margin-left: 4%;
+			  font-weight: 800;
+		  }
+		  .point-pos {
+			  width: 25%;
+			  height: 20px;
+			  font-size: 130%;
+			  float: right; 
+			  text-align:right;
+			   display: inline-block;
+		  }
+	  </style>
+	
+	</head>
+     
+	<body>
+		<div id="app">
+			<header class="mui-bar mui-bar-nav lm_mainbg lm_head_zb">
+			<a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left lm_head_zb_color">
+						</a> 
+						<h1 class="mui-title lm_head_zb_title">1#分站</h1>
+						
+			</header> 
+			<div class="point-title">
+				<div style="width: 50%;float: left;">
+					&nbsp;&nbsp;&nbsp;&nbsp;1#分站
+				</div>
+				<div style="width: 20%;margin-left: 5%;"> 报警值</div>
+				<div style="width: 30%;float: right;text-align:right;">时长&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			</div>
+			 <div  style="margin-top:22%;">
+			    <ul class="mui-table-view">
+			        <li id="mine-detail" class="mui-table-view-cell">
+					 <div style="width: 100%;height: 20px;">
+						<div class="point-name"> 
+							济三煤矿
+						</div>
+						<div class="point-warn" style="background-color: #449D44">1.1</div>
+						<div class="point-pos">5</div>
+					 </div>
+					</li>
+					<hr>
+			        <li class="mui-table-view-cell">
+			         <div style="width: 100%;height: 20px;">
+			        	<div class="point-name"> 
+			        		济三煤矿
+			        	</div>
+			        	<div class="point-warn" style="background: #ED2323;">0.5</div>
+			        	<div class="point-pos">1</div>
+			         </div>
+			        </li>
+			        <hr>
+					<li class="mui-table-view-cell">
+					 <div style="width: 100%;height: 20px;">
+						<div class="point-name"> 
+							济三煤矿
+						</div>
+						<div class="point-warn" style="background-color: #129700;">1.1</div>
+						<div class="point-pos">6</div>
+					 </div>
+					</li>
+					<hr>
+					<li class="mui-table-view-cell">
+					 <div style="width: 100%;height: 20px;">
+						<div class="point-name"> 
+							济三煤矿
+						</div>
+						<div class="point-warn" style="background-color: #129700;">1.1</div>
+						<div class="point-pos">3</div>
+					 </div>
+					</li>
+					<hr>
+					<li class="mui-table-view-cell">
+					 <div style="width: 100%;height: 20px;">
+						<div class="point-name"> 
+							济三煤矿
+						</div>
+						<div class="point-warn" style="background-color: #129700;">1.1</div>
+						<div class="point-pos">0.5</div>
+					 </div>
+					</li>
+					<hr>
+					<li class="mui-table-view-cell">
+					 <div style="width: 100%;height: 20px;">
+						<div class="point-name"> 
+							济三煤矿
+						</div>
+						<div class="point-warn" style="background-color: #129700;">1.1</div>
+						<div class="point-pos">4</div>
+					 </div>
+					</li>
+					<hr>
+					<li class="mui-table-view-cell">
+					 <div style="width: 100%;height: 20px;">
+						<div class="point-name"> 
+							济三煤矿
+						</div>
+						<div class="point-warn" style="background-color: #129700;">1.1</div>
+						<div class="point-pos">2</div>
+					 </div>
+					</li>
+					<hr>
+					<li class="mui-table-view-cell">
+					 <div style="width: 100%;height: 20px;">
+						<div class="point-name"> 
+							济三煤矿
+						</div>
+						<div class="point-warn" style="background-color: #129700;">1.1</div>
+						<div class="point-pos">2</div>
+					 </div>
+					</li>
+					<hr>
+			    </ul>
+			</div> 
+			
+		</div>
+		
+		
+		<script src="../../../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		
+		mui.plusReady(function () {
+		
+		//分站详情
+		mui("body").on("tap", "#mine-detail", function(){
+			var page = "point-detail.html"
+			mui.openWindow({
+				url: page,
+				id: page,
+				createNew: true,
+				waiting: {autoShow: false},
+			});
+			
+		})
+			
+		})
+		
+		</script>
+	</body>
+
+</html>

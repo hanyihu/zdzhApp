@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/lm_pages.css" />
+		<link rel="stylesheet" href="../../css/lm_reset.css" />
+		<link rel="stylesheet" href="../../css/warn/program.css" />
+	</head>
+
+	<body>
+		<!--头部开始-->
+		<header class="mui-bar mui-bar-nav lm_mainbg lm_head_zb">
+			<a id="backFeedBack" class=" mui-icon mui-icon-arrowleft mui-pull-left lm_head_zb_color">
+			</a> 
+			<h1 class="mui-title lm_head_zb_title">系统应用</h1>
+			<!-- <b class=" mui-pull-right lm_head_zb_title" id="choseImage" style="margin-top: 3%;">上传</b> -->
+		</header>
+
+		<div>
+
+			<ul class="program">
+				<div class="title1">
+					<span>实时监测</span>
+
+					<hr>
+				</div>
+ 
+				<li class="programLis">
+					<img src="../../img/icon/icon_qustn.png" alt="">
+					<span>环境参数</span>
+				</li>
+				<li class="programLis" id="">
+					<img src="../../images/icon13.png" alt="">
+					<span>重点关注</span>
+				</li>
+				<li class="programLis">
+					<img src="../../img/icon/icon_order.png" alt="">
+					<span>矿压</span>
+				</li>
+				<!-- <li class="programLis">
+				<img src="../../img/icon/icon_wae.png" alt="">
+				<span>隐患查询</span>
+			</li> -->
+			</ul>
+
+
+			<ul class="program1">
+				<div class="title2">
+ 					<span>数据查询</span>
+					<!--  <img src="../../img/tingnan/tingnan3.png" /> -->
+					<!-- <input type="text" name="" value="数据查询" /> -->
+					<hr>
+				</div>
+
+				<li class="programLis1" id="monitor">
+					<img src="../../img/icon/icon_qustn.png" alt="">
+					<span>安全监测</span>
+				</li>
+				<li class="programLis1" id="personal">
+					<img src="../../images/icon13.png" alt="">
+					<span>人员</span>
+				</li>
+				<li class="programLis1" id="mine">
+					<img src="../../img/icon/icon_order.png" alt="">
+					<span>矿井</span>
+				</li>
+				<li class="programLis1" id="video">
+					<img src="../../img/icon/icon_wae.png" alt="">
+					<span>视频监控</span>
+				</li>
+			</ul>
+
+
+			<!-- 底部导航 -->
+			<nav class="mui-bar mui-bar-tab" style="background: white;">
+				<a id="program" class=" mui-tab-item " href="#tabbar">
+					<span class="mui-icon mui-icon-navigate" style="color:#007AFF"></span>
+					<!-- <span class="mui-tab-label" style="color:#1885F2">系统</span> -->
+				</a>
+
+				<a id="home" class="mui-tab-item  mui-active">
+					<span class="mui-icon mui-icon-spinner mui-spin"></span>
+					<!-- <span class="mui-tab-label">主页</span> -->
+				</a>
+				<a id="my" class="mui-tab-item">
+					<span class="mui-icon mui-icon-contact"></span>
+					<!-- <span class="mui-tab-label">我的</span> -->
+				</a>
+			</nav>
+
+		</div>
+
+
+		<script src="../../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+
+			//跳转到主页
+			mui("body").on("tap", "#home", function() {
+				var page = "../../main.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});
+
+			})
+
+			//跳转到我的
+			mui("body").on("tap", "#my", function() {
+				var page = "../my/my.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});
+
+			})
+
+          
+
+
+			//数据查询--安全监测
+			mui("body").on("tap", "#monitor", function() {
+				var page = "dataquery/monitor.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});
+
+			})
+
+			//数据查询--人员定位
+			mui("body").on("tap", "#personal", function() {
+				var page = "dataquery/person-query.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});
+
+			})
+
+
+ 
+			//数据查询--矿井
+			mui("body").on("tap", "#mine", function() {
+				var page = "dataquery/mine.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});
+
+			})
+			
+			
+			//数据查询--视频监控
+			mui("body").on("tap", "#video", function() {
+				var page = "dataquery/video.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});
+			
+			})
+			
+			
+			//返回到矿井列表
+			mui("body").on("tap", "#backFeedBack", function() {
+				var page = "../../mine.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});
+			
+			})
+		</script>
+	</body>
+
+</html>

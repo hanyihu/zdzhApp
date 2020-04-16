@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>钻孔应力信息详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		 <link rel="stylesheet" href="../../../css/warn/dataquery.css"/>
+	
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav head-title">
+		<a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left ">
+		</a> 
+		<h1 class="mui-title ">钻孔应力信息详情</h1>
+		<!-- <b class=" mui-pull-right lm_head_zb_title" id="choseImage" style="margin-top: 3%;">上传</b> -->
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+
+				<div class="mui-card" id="stress-detail">
+					<div class="mui-card-header" id="areaName" style="font-size: 150%;"></div>
+					<div class="mui-card-content">
+						<div class="mui-row">
+							<div class="mui-col-sm-12 mui-col-xs-12" style="font-size: 130%;">
+								<ul >
+								<li class="mui-table-view-cell" id="pointName">
+									
+								</li>
+								<li class="mui-table-view-cell" id="areaType">
+									
+								</li>
+								<li class="mui-table-view-cell" id="tunnelName">
+									
+								</li>
+								<li class="mui-table-view-cell" id="stressValue">
+									
+								</li>
+								<li class="mui-table-view-cell" id="warnParams">
+									
+								</li>
+								<li class="mui-table-view-cell" id="warnRecords">
+									
+								</li>
+								<li class="mui-table-view-cell" id="stateText">
+									
+								</li>
+								</ul>
+							</div>
+							
+						</div>
+
+					</div>
+
+					<div class="mui-card-footer" id="collectionTime" style="font-size: 130%;"></div>
+				</div>
+
+			</div>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/Util.js"></script>
+		<script src="../../../js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript">
+			
+			mui.plusReady(function () {
+				mui.init();
+			var self = plus.webview.currentWebview();
+			console.log("地应力测点pointId=="+self.pointId);
+			
+			$("#areaName").html(self.areaName);
+			$("#pointName").html("测点名称：" + self.stressName);
+			$("#areaType").html("工作面类型：" + self.areaType);
+			$("#tunnelName").html("巷道名称：" + self.tunnelName);
+			$("#stressValue").html("应力监测值：" + self.stressValue);
+			$("#warnParams").html("预警值参数：" + self.warnParams);
+			$("#warnRecords").html("预警记录：" + self.warnRecords);
+			$("#stateText").html("异常描述：" + self.stateText);
+			$("#collectionTime").html("采集时间：" + self.collectionTime);
+			
+				//矿应力数据曲线
+				mui("body").on("tap", "#stress-detail", function() {
+					var page = "stress-datachart.html"
+					mui.openWindow({
+						url: page,
+						id: page,
+						extras: {
+							     pointId:self.pointId,
+								 areaName:self.areaName
+					    
+						        },
+						createNew: true,
+						waiting: {
+							autoShow: false
+						},
+					});
+				
+				})
+			})
+			
+		</script>
+	</body>
+
+</html>

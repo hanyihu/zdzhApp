@@ -1,0 +1,473 @@
+/* .mui-bar-nav {
+  background-color: #2385e4;
+  box-shadow: none;
+}
+
+.mui-bar-nav a {
+  color: #ffffff;
+}
+
+.mui-bar-nav a img {
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.2rem;
+}
+
+.mui-bar-nav h1 {
+  color: #ffffff;
+  font-size: 1.7rem;
+} */
+
+/* 头部样式 */
+.head-title {
+	background-color: #3e99fa;
+}
+
+.head-title h1 {
+	color: white;
+}
+
+.head-title a {
+	color: white;
+}
+
+
+.box {
+	width: 100%;
+}
+
+.box .beijin {
+	width: 100%;
+	background: #f1f3f7;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.box .beijin .myTitle {
+	width: 100%;
+	height: 7.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.box .beijin .myTitle ul {
+	width: 37%;
+	height: 4.2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.box .beijin .myTitle ul li {
+	width: 100%;
+	color: #2385e4;
+	font-weight: 700;
+	font-size: 1.6rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.box .beijin .myTitle ul li img {
+	height: 0.5rem;
+}
+
+.box .beijin .myTitle ul li span {
+	letter-spacing: 0.2rem;
+	font-size: 100%;
+	color: #1885F2
+}
+
+.box .beijin .myTitle ul li:nth-child(2) {
+	width: auto;
+	color: #c1c2c6;
+}
+
+.box .beijin .myForm {
+	width: 100%;
+	padding: 0 1.2rem;
+}
+
+.box .beijin .myForm .myFormList:nth-child(1) {
+	margin-top: 0;
+}
+
+.box .beijin .myForm .myFormList {
+	width: 100%;
+	display: flex;
+	margin-top: 1.2rem;
+	align-items: center;
+}
+
+.box .beijin .myForm .myFormList .myFormListImg {
+	width: 12%;
+	height: 4.4rem;
+}
+
+.box .beijin .myForm .myFormList .myFormListImg img {
+	width: 100%;
+	height: 4.4rem;
+}
+
+.box .beijin .myForm .myFormList .startDate {
+	width: 88%;
+	height: 4.4rem;
+	background: #ffffff;
+	position: relative;
+}
+
+.box .beijin .myForm .myFormList .startDate input {
+	width: 90%;
+	border: none;
+	height: 4.4rem;
+}
+
+.box .beijin .myForm .myFormList .startDate img {
+	width: 1rem;
+	height: 1.5rem;
+	position: absolute;
+	right: 10px;
+	top: 12px;
+	z-index: 999;
+}
+
+.box .beijin .query {
+	width: 81%;
+	height: 4.2rem;
+	background-color: #2385e4;
+	color: #ffffff;
+	font-size: 1.5rem;
+	border: none;
+	margin-top: 47%;
+}
+
+.tab {
+	width: 100%;
+	height: 52px;
+	background: #fff;
+	position: fixed;
+	bottom: 0;
+	display: flex;
+	justify-content: space-between;
+	padding: 0;
+	margin: 0;
+}
+
+.tab .tabLis {
+	list-style: none;
+	width: calc(100% /5);
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.tab .tabLis img {
+	display: block;
+	width: 20px;
+	height: 20px;
+}
+
+.tab .tabLis span {
+	font-size: 12px;
+	line-height: 14px;
+	margin-top: 6px;
+}
+
+.tab .active {
+	color: #2385e4;
+}
+
+.monitor-card {
+	width: 100%;
+	height: 46px;
+	border-radius: 5px;
+	background-color: #ffffff;
+	box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.3);
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+
+}
+
+.monitor-card-title {
+	font-size: 100%;
+	line-height: 46px;
+	font-weight: 600;
+	float: left;
+	width: 80%;
+}
+
+.monitor-card-title-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	height: 46px;
+	width: 15%;
+	float: left;
+}
+
+.monitor-card-title-icon img {
+	height: 50%;
+	width: 50%;
+
+}
+
+.monitor-card-title-1 {
+	line-height: 46px;
+	width: 85%;
+	float: right;
+	font-size: 100%;
+
+}
+
+.monitor-card-right {
+	font-size: 100%;
+	line-height: 46px;
+	float: right;
+	width: 20%;
+}
+
+.monitor-hei {
+	height: 60px;
+}
+
+
+.monitor-card2 {
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+	background-color: #ffffff;
+	box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.3);
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+
+}
+
+  .monitor-card-title-water{
+			font-size: 120%;
+			line-height: 46px;
+			font-weight: 600;
+			float: left;
+			width: 100%;
+		}
+		.monitor-card-ul {
+			margin:0px; 
+			padding:0px; 
+			overflow:hidden;
+		}
+
+.mui-table-view-cell-1 {
+	position: relative;
+   
+	overflow: hidden;
+
+	padding: 5px 10px;
+
+	-webkit-touch-callout: none;
+}
+
+.personal-station {
+	width: 70%;
+	font-size: 100%;
+	float: right;
+	text-align: right;
+	
+}
+
+.personal-station-1 {
+	width: 30%;
+	font-size: 100%;
+	float: left;
+	
+	
+}
+
+.personal-station-2 {
+	width: 100%;
+	height: 15%;
+	
+}
+
+
+.personal-total {
+	width: 100%;
+	height: 60px;
+	background-color: #2386E4;
+	;
+
+}
+
+.personal-totalcount {
+	width: 33%;
+	height: 100%;
+	float: left;
+	text-align: center;
+}
+
+.personal-totalcount-1 {
+	width: 100%;
+	height: 50%;
+	line-height: 30px;
+	color: #EEA236;
+	font-size: 150%;
+}
+
+.personal-totalcount-2 {
+	width: 100%;
+	height: 50%;
+	line-height: 30px;
+	color: white;
+	font-size: 100%;
+}
+
+.personal-boss {
+	width: 100%;
+	height: 50%;
+	line-height: 30px;
+	color: #008000;
+	font-size: 150%;
+}
+
+.perspnal-outcount {
+	width: 100%;
+	height: 50%;
+	line-height: 30px;
+	color: red;
+	font-size: 150%;
+
+}
+
+
+/* 数据曲线样式 */
+   .data-time {
+		  height: 10%;
+ 
+	   }
+.data-time-start{
+		   height: 40px;
+		   width: 50%;
+		   float: left;
+		   text-align: center;
+	   }
+	   .data-time-start-1{
+		   height: 100%;
+		   width: 18%;
+		   float: left;
+		   text-align: center;
+	   }
+	   .data-time-start-1 img{
+	   		   height: 100%;
+	   		   width: 100%;
+	   		  
+	   		   text-align: center;
+	   }
+	   .data-time-start-2{
+	   		height: 100%;
+	   		width: 80%;   
+			float: left;
+			text-align: center;
+	   }
+	   .data-time-end-1{
+	   		   height: 100%;
+	   		   width: 18%;
+	   		   float: left;
+	   		   text-align: center;
+	   }
+	   .data-time-end-1 img{
+	   		   height: 100%;
+	   		   width: 100%;
+	   		  
+	   		   text-align: center;
+	   }
+	   .data-time-end-2{
+	   		height: 100%;
+	   		width: 80%;   
+	   			float: left;
+	   			text-align: center;
+	   }
+	   
+	   .data-query{
+		margin-top: 2%;
+		
+	   }
+	   .data-query-button{
+	   		background-color: #31B0D5;
+			color: white;
+			margin:0 auto; 
+	   		display:block; 
+	   		
+	   }
+	   
+	   .chart {
+	   	height: 300px;
+	   width: 100%;
+	   	padding: 0px;
+	   }
+	   
+	   /* 钻孔应力样式*/
+	   .point-title {
+	   	  width: 100%;
+	   	  height: 40px;
+	   	  background:whitesmoke;
+	   	  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.3); 
+	   	  position: absolute; 
+	   	  top:44px;
+	   	  left: 0;
+	   	  right: 0;
+	   	  margin: auto;
+	   	  display: inline;
+	   	  
+	     }
+	     .point-title div{
+	   	  height: 100%;
+	   	  line-height: 40px;
+	   	   display: inline;
+	   	   font-size: 110%;
+	   	   font-weight: 500;
+	     }
+	     .point-name{
+	   	  width: 50%;
+	   	  height: 20px;
+	   	  font-size: 100%;
+	   	 /* float:left; */
+	   	  font-weight: 400;
+		  
+	     display: inline-block;
+	     }
+	     .point-warn {
+	   	  width: 15%;
+	   	  height: 20px;
+	   	 border-radius: 10px;
+	   	 display: inline-block;
+	   	 text-align: center;
+	   	  font-size: 100%;
+	   	  margin-left: 25%;
+	   	  font-weight: 600;
+	     }
+		 .point-warn-1 {
+		  width: 15%;
+		  height: 20px;
+		 border-radius: 10px;
+		 display: inline-block;
+		 text-align: center;
+		  font-size: 100%;
+		  margin-left: 5%;
+		  font-weight: 600;
+		 }
+	     .point-pos {
+	   	  width: 25%;
+	   	  height: 20px;
+	   	  font-size: 100%;
+	   	  float: right; 
+	   	  text-align:center;
+	   	   display: inline-block;
+	     }

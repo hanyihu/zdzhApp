@@ -1,0 +1,331 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.css" rel="stylesheet" />
+	    <link rel="stylesheet" href="../../../css/lm_pages.css" />
+	    <link rel="stylesheet" href="../../../css/lm_reset.css" />
+	     <link rel="stylesheet" href="../../../css/warn/dataquery.css"/>
+	
+	</head>
+
+	<body>
+		<div id="app">
+		<!--头部开始-->
+		  <header class="mui-bar mui-bar-nav lm_mainbg lm_head_zb">
+	  	  <a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left lm_head_zb_color">
+			</a> 
+			<h1 class="mui-title lm_head_zb_title">安全监测</h1>
+			<!-- <b class=" mui-pull-right lm_head_zb_title" id="choseImage" style="margin-top: 3%;">上传</b> -->
+		  </header>
+		
+		  <!--可拖动的选项卡-->
+		  <div class="mui-slider" style="margin-top: 12%;">
+		      <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+		          <a class="mui-control-item" style="font-family:microsoft yahei;font-size: 100%;" href="#item">全部</a>
+				  <a class="mui-control-item" style="font-family:microsoft yahei;font-size: 100%;" href="#item1">监控分站</a>
+		          <a class="mui-control-item" style="font-family:microsoft yahei;font-size: 100%;" href="#item2">安装位置</a>
+		      </div>
+		      <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div> 
+		      <div class="mui-slider-group">
+				 
+				  <div id="item" class="mui-slider-item mui-control-content  mui-active">
+				     <ul>
+						<li class="mui-table-view-cell-1" style="height:180px ;">
+							<div class="monitor-card2" >
+								<div style="width: 100%;">
+								  <div class="monitor-card-title" >
+								    &nbsp;&nbsp;&nbsp;济三煤矿						  
+								  </div>
+								<div class="monitor-card-right" >
+								  <span style="color: red;font-size: 150%;">●</span>
+								  <span style="font-size: 100%;">异常 </span>
+								</div>
+								
+								</div>
+								
+								<hr color="#357EBD">
+								
+								<div style="width: 100%;height:15% ;margin-top: 3%">
+									<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;分站编号:</div>
+								    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >1#分站  &nbsp;&nbsp;</div>
+								
+								</div>
+								<div style="width: 100%;height:15%">
+									<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;测点类型:</div>
+								    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >通风  &nbsp;&nbsp;</div>
+								
+								</div>
+								<div style="width: 100%;height:15%">
+									<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;监测时间:</div>
+								    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >2020-01-13 18:55:12  &nbsp;&nbsp;</div>
+								
+								</div>
+								<div style="width: 100%;height:15%">
+									<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;监测位置:</div>
+								    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >通风位置 &nbsp;&nbsp;</div>
+								
+								</div>
+							</div>
+						</li>
+				        <li class="mui-table-view-cell-1" style="height:180px ;">
+				        	<div class="monitor-card2" >
+				        		<div style="width: 100%;">
+				        		  <div class="monitor-card-title" >
+				        		    &nbsp;&nbsp;&nbsp;济二煤矿						  
+				        		  </div>
+				        		<div class="monitor-card-right" >
+				        		  <span style="color:#008000;font-size: 150%;">●</span>
+				        		  <span style="font-size: 100%;">正常 </span>
+				        		</div>
+				        		
+				        		</div>
+				        		
+				        		<hr color="#357EBD">
+				        		
+				        		<div style="width: 100%;margin-top: 3%;height:15% ">
+				        			<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;分站编号:</div>
+				        		    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >5#分站&nbsp;&nbsp;</div>
+				        		
+				        		</div>
+				        		<div style="width: 100%;height:15%" >
+				        			<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;测点类型:</div>
+				        		    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >瓦斯  &nbsp;&nbsp;</div>
+				        		
+				        		</div>
+				        		<div style="width: 100%;height:15%">
+				        			<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;监测时间:</div>
+				        		    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >2020-01-13 18:55:12  &nbsp;&nbsp;</div>
+				        		
+				        		</div>
+				        		<div style="width: 100%;height:15%">
+				        			<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;监测位置:</div>
+				        		    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >瓦斯位置 &nbsp;&nbsp;</div>
+				        		
+				        		</div>
+				        	</div>
+				        </li>
+						<li class="mui-table-view-cell-1" style="height:180px ;">
+							<div class="monitor-card2" >
+								<div style="width: 100%;">
+								  <div class="monitor-card-title" >
+								    &nbsp;&nbsp;&nbsp;东滩煤矿						  
+								  </div>
+								<div class="monitor-card-right" >
+								  <span style="color:#008000;font-size: 150%;">●</span>
+								  <span style="font-size: 100%;">正常 </span>
+								</div>
+								
+								</div>
+								
+								<hr color="#357EBD">
+								
+								<div style="width: 100%;margin-top: 3%;height:15% ">
+									<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;分站编号:</div>
+								    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >9#分站&nbsp;&nbsp;</div>
+								
+								</div>
+								<div style="width: 100%;height:15%" >
+									<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;测点类型:</div>
+								    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >瓦斯  &nbsp;&nbsp;</div>
+								
+								</div>
+								<div style="width: 100%;height:15%">
+									<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;监测时间:</div>
+								    <div style="width: 40%;font-size: 120%;float: right;text-align: right;font-weight:600" >2020-01-13 18:55:12  &nbsp;&nbsp;</div>
+								
+								</div>
+								<div style="width: 100%;height:15%">
+									<div style="width: 40%;font-size: 120%;float: left;">&nbsp;&nbsp;监测位置:</div>
+								    <div style="width: 40%;font-size: 120%;float: right;text-align: right; font-weight:600 ;" >瓦斯位置 &nbsp;&nbsp;</div>
+								
+								</div>
+							</div>
+						</li>
+				  	</ul> 	
+				  </div>
+		          <div id="item1" class="mui-slider-item mui-control-content">
+		              <ul >
+		                  <li id="substation1" class="mui-table-view-cell-1 monitor-hei"  >
+							  <div class="monitor-card" style="height: 100%;">
+								  <div style="width: 100%;">
+								    <div class="monitor-card-title" >
+								      &nbsp;&nbsp;&nbsp;1#分站						  
+								    </div>
+								  <div class="monitor-card-right" >
+								    <span style="color: red;font-size: 150%;">●</span>
+								    <span style="font-size: 100%;">异常 </span>
+								  </div>
+								  
+								  </div>
+							  </div>
+						  </li>
+		                  <li class="mui-table-view-cell-1 monitor-hei" >
+							  <div class="monitor-card" style="height: 100%";>
+								 <div style="width: 100%;">
+								   <div class="monitor-card-title" >
+								     &nbsp;&nbsp;&nbsp;2#分站						  
+								   </div>
+								 <div class="monitor-card-right" >
+								   <span style="color: #008000;font-size: 150%;">●</span>
+								   <span style="font-size: 100%;">正常 </span>
+								 </div>
+								 
+								 </div>
+							  </div>
+						  </li>
+						  <li class="mui-table-view-cell-1 monitor-hei" >
+						  		<div class="monitor-card" style="height: 100%";>
+						  			<div style="width: 100%;">
+						  			  <div class="monitor-card-title" >
+						  			    &nbsp;&nbsp;&nbsp;3#分站					  
+						  			  </div>
+						  			<div class="monitor-card-right" >
+						  			  <span style="color: red;font-size: 150%;">●</span>
+						  			  <span style="font-size: 100%;">异常 </span>
+						  			</div>
+						  			
+						  			</div>
+									 
+						  		 </div>
+						  </li> 
+						  <li class="mui-table-view-cell-1 monitor-hei">
+						  		<div class="monitor-card" style="height: 100%";>
+						  			<div style="width: 100%;">
+						  			  <div class="monitor-card-title" >
+						  			    &nbsp;&nbsp;&nbsp;4#分站						  
+						  			  </div>
+						  			<div class="monitor-card-right" >
+						  			  <span style="color:#008000;font-size: 150%;">●</span>
+						  			  <span style="font-size: 100%;">正常 </span>
+						  			</div>
+						  			
+						  			</div>
+						  		 </div>
+						  </li>
+						  <li class="mui-table-view-cell-1 monitor-hei">
+						  		<div class="monitor-card" style="height: 100%";>
+						  			<div style="width: 100%;">
+						  			  <div class="monitor-card-title" >
+						  			    &nbsp;&nbsp;&nbsp;5#分站						  
+						  			  </div>
+						  			<div class="monitor-card-right" >
+						  			  <span style="color: #008000;font-size: 150%;">●</span>
+						  			  <span style="font-size: 100%;">正常 </span>
+						  			</div>
+						  			
+						  			</div>
+						  		 </div>
+						  </li>
+		              </ul>			 
+					  
+		        </div>
+		         <div id="item2" class="mui-slider-item mui-control-content">
+		               <ul >
+		                   <li class="mui-table-view-cell-1 monitor-hei"  >
+		         			  <div class="monitor-card" style="height: 100%;">
+		         				  <div style="width: 100%;">
+		         				    <div class="monitor-card-title" >
+		         				      &nbsp;&nbsp;&nbsp;安装位置一						  
+		         				    </div>
+		         				  <div class="monitor-card-right" >
+		         				    <span style="color: red;font-size: 150%;">●</span>
+		         				    <span style="font-size: 100%;">异常 </span>
+		         				  </div>
+		         				  
+		         				  </div>
+		         			  </div>
+		         		  </li>
+		                   <li class="mui-table-view-cell-1 monitor-hei" >
+		         			  <div class="monitor-card" style="height: 100%";>
+		         				 <div style="width: 100%;">
+		         				   <div class="monitor-card-title" >
+		         				     &nbsp;&nbsp;&nbsp;安装位置二						  
+		         				   </div>
+		         				 <div class="monitor-card-right" >
+		         				   <span style="color: #008000;font-size: 150%;">●</span>
+		         				   <span style="font-size: 100%;">正常 </span>
+		         				 </div>
+		         				 
+		         				 </div>
+		         			  </div>
+		         		  </li>
+		         		  <li class="mui-table-view-cell-1 monitor-hei" >
+		         		  		<div class="monitor-card" style="height: 100%";>
+		         		  			<div style="width: 100%;">
+		         		  			  <div class="monitor-card-title" >
+		         		  			    &nbsp;&nbsp;&nbsp;安装位置三					  
+		         		  			  </div>
+		         		  			<div class="monitor-card-right" >
+		         		  			  <span style="color: red;font-size: 150%;">●</span>
+		         		  			  <span style="font-size: 100%;">异常 </span>
+		         		  			</div>
+		         		  			
+		         		  			</div>
+		         					 
+		         		  		 </div>
+		         		  </li> 
+		         		  <li class="mui-table-view-cell-1 monitor-hei">
+		         		  		<div class="monitor-card" style="height: 100%";>
+		         		  			<div style="width: 100%;">
+		         		  			  <div class="monitor-card-title" >
+		         		  			    &nbsp;&nbsp;&nbsp;安装位置四						  
+		         		  			  </div>
+		         		  			<div class="monitor-card-right" >
+		         		  			  <span style="color:#008000;font-size: 150%;">●</span>
+		         		  			  <span style="font-size: 100%;">正常 </span>
+		         		  			</div>
+		         		  			
+		         		  			</div>
+		         		  		 </div>
+		         		  </li>
+		         		  <li class="mui-table-view-cell-1 monitor-hei">
+		         		  		<div class="monitor-card" style="height: 100%";>
+		         		  			<div style="width: 100%;">
+		         		  			  <div class="monitor-card-title" >
+		         		  			    &nbsp;&nbsp;&nbsp;安装位置五						  
+		         		  			  </div>
+		         		  			<div class="monitor-card-right" >
+		         		  			  <span style="color: #008000;font-size: 150%;">●</span>
+		         		  			  <span style="font-size: 100%;">正常 </span>
+		         		  			</div>
+		         		  			
+		         		  			</div>
+		         		  		 </div>
+		         		  </li>
+		               </ul>			 
+		         	  
+		         </div>
+		      </div>
+		  </div>
+		
+		
+		</div>
+		
+		<script src="../../../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			
+			mui.plusReady(function () {
+			
+			//安全监测--安监控分站
+			mui("body").on("tap", "#substation1", function(){
+				var page = "monitor-point.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {autoShow: false},
+				});
+				
+			})
+				
+			})
+			
+		</script>
+	</body>
+
+</html>

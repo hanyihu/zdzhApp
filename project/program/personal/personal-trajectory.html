@@ -1,0 +1,360 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../css/lm_pages.css" />
+		<link rel="stylesheet" href="../../../css/lm_reset.css" />
+	 <link rel="stylesheet" href="../../../css/warn/dataquery.css" />
+	
+	<style>
+	       ul,
+	       li {
+	           /*做时间轴的线*/
+	           margin: 0;
+	           padding: 0;
+	       }
+			
+	       .layui-timeline {
+	           padding-left: 5%;
+	           padding-top:20px
+	       }
+			
+	       .layui-timeline-item {
+	           position: relative;
+	           padding-bottom: 20px;
+	           margin-top:-12px;
+	       }
+			
+	       li {
+	           list-style: none;
+	       }
+			
+	       .layui-timeline-item:first-child::before {
+	           display: block;
+	       }
+			
+	       .layui-timeline-item:last-child::before {
+	           content: '';
+	           position: absolute;
+	           left: 5px;
+	           top: 0;
+	           z-index: 0;
+	           width: 0;
+	           
+	       }
+			
+	       .layui-timeline-item::before {
+	           content: '';
+	           position: absolute;
+	           /* left: 5px; */
+	           top: 0;
+	           z-index: 0;
+	           width: 1px;
+	           height: 100%;
+	       }
+			
+	       .layui-timeline-item::before,
+	       hr {
+	           background-color: #569fff;
+	       }
+			
+	       .layui-timeline-axis {
+	           position: absolute;
+	           left: -5px;
+	           top: 0;
+	           z-index: 10;
+	           width: 20px;
+	           height: 20px;
+	           line-height: 20px;
+	           background-color: #fff;
+	           color: #5FB878;
+	           border-radius: 50%;
+	           text-align: center;
+	           cursor: pointer;
+	       }
+			
+	       .layui-icon {
+	           font-family: layui-icon !important;
+	           font-size: 16px;
+	           font-style: normal;
+	       }
+			
+	       .layui-timeline-content {
+	           padding-left: 25px;
+	       }
+			
+	       .layui-text {
+	           line-height: 35px;
+	           font-size: 14px;
+	           color: #666;
+	           top:-10px;
+	       }
+			
+	       .layui-timeline-title {
+	           position: relative;
+	           margin-bottom: 25px;
+			   top:20%;
+	       }
+			
+	       .circle {
+	           width: 10px;
+	           height: 10px;
+	           border-radius: 50%;
+	           border: 1px solid #569fff;
+	       }
+			
+	       .etime-first {
+	           top: 45%;
+	           left: -100px;
+	           position: absolute;
+	       }
+			
+	       .time-first {
+	           position: absolute;
+	           left: -60px;
+	       }
+					
+			.layui-sty{
+				background-color: white;
+				height: 70px;
+				width: 90%;
+				margin-left: 5%;
+				border-radius: 10px;
+			}
+			
+			.layui-sty p{
+				color: #008000;
+			}
+			
+	   </style>
+	</head>
+
+	<body>
+		<!--头部开始-->
+		 <header class="mui-bar mui-bar-nav lm_mainbg lm_head_zb">
+		   <a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left lm_head_zb_color">
+					</a> 
+					<h1 class="mui-title lm_head_zb_title" id="personal-name"></h1>
+					<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right " style="color: white;"></a> 
+		 </header>
+		
+		<div id="pullrefresh" style="margin-top: 44px;"> 
+		<div  id="divnodata" style="font-size: 20px;color: red;text-align: center;margin-top: 15%;"></div>
+		
+		<ul class="layui-timeline mine_class" id="minelist"> </ul>
+				 	
+		</div>
+		  
+		
+		<script src="../../../js/mui.js"></script>
+		<script src="../../../js/Util.js"></script>
+		<script src="../../../js/vue.js"></script>
+		<script src="../../../js/mui.picker.js"></script>
+		<script src="../../../js/mui.poppicker.js"></script>
+		<script src="../../../js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript">
+			
+			var date= new Date();
+			var time = '';//开始时间
+			var endTime='';//结束时间
+			Y = date.getFullYear() + '-';
+			M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+			D = date.getDate();
+			 
+			time = Y+M+D+" 00:00:00";
+		
+			var CurrentDate='';
+			var count = 1;
+			var totalpage=1;
+			var isLoadMore=false;
+			(function(mui, doc) {
+				mui.init({
+					swipeBack: true ,
+									pullRefresh: {
+										container: '#pullrefresh',
+										down: {
+											style:'circle',
+											callback: pulldownRefresh
+										},
+										up: {
+											//auto:true,
+											contentrefresh: '正在加载...',
+											callback: pullupRefresh
+										}
+									}
+				});
+				mui.plusReady(function() {
+			   getSubstation();
+			
+				document.getElementById("offCanvasBtn").addEventListener('tap', function() {
+				var dDate = new Date();
+				CurrentDate=dDate.getFullYear() + "-" + ((dDate.getMonth() + 1)<10?('0'+(dDate.getMonth() + 1)):(dDate.getMonth() + 1)) + "-" + (dDate.getDate()<10?"0"+dDate.getDate():dDate.getDate())
+				//dDate.setFullYear(2014, 7, 16);
+				var minDate = new Date();
+				minDate.setFullYear(2010, 0, 1);
+				var maxDate = new Date();
+				//maxDate.setFullYear(2016, 11, 31);
+				plus.nativeUI.pickDate(function(e) {
+					var d = e.date;
+					CurrentDate=d.getFullYear() + "-" + ((d.getMonth() + 1)<10?('0'+(d.getMonth() + 1)):(d.getMonth() + 1)) + "-" + (d.getDate()<10?"0"+d.getDate():d.getDate());
+					
+					console.log("CurrentDate=="+CurrentDate)
+					count = 1;
+					time=CurrentDate+" 00:00:00";//开始时间
+					endTime = CurrentDate + " 23:59:59";//结束时间
+					
+					 getSubstation();
+					//info.innerText = '您选择的日期是:' + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+				}, function(e) {
+					//info.innerText = "您没有选择日期";
+				}, {
+					title: "请选择日期",
+					date: dDate,
+					minDate: minDate,
+					maxDate: maxDate
+				});
+			})
+				});
+				
+			}(mui, document));
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					count=1;
+					isLoadMore=false;
+				
+					getSubstation();
+					
+				}, 1000);
+			}
+			
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+				isLoadMore=true;
+				count++;
+				
+					if(count<=totalpage)
+					  {
+					  	getSubstation();
+					  }
+					  else
+					  {
+					  	//count=totalpage;
+					  	mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					  }
+				}, 1000);
+			}
+		
+						function getSubstation() {
+							var ul = document.getElementById('minelist');
+							var size = 10; //每页的条数
+							var token = "Bearer "+localStorage.getItem("$token")
+							var mine_id = localStorage.getItem('$mineId');
+                            var self = plus.webview.currentWebview();
+							$("#personal-name").html(self.personName);
+							
+							
+							console.log("获取的当前开始日期为=="+time+"====结束日期为==="+endTime)
+										  
+							console.log("现在是第 "+count+" 页数据")
+							
+							var baseUrl=Util.BaseUrl;
+							mui.ajax({
+								url:baseUrl + 'api/staffLocateRecord/query?personCard='+self.personCard+'&startTime='+time+'&endTime='+endTime+'&mineId='+mine_id,
+														   
+								headers: {'Authorization': token },
+								dataType:'json',//服务器返回json格式数据
+								type:'get',//HTTP请求类型
+								timeout:10000,//超时时间设置为10秒；
+								contentType: "application/json;charset=UTF-8",     
+							   
+							   success:function(data,textStatus,xhr){
+								//cityPicker3.setData(data);
+								console.log("获取的人员轨迹列表数据=="+JSON.stringify(data))
+								if(data==null||data.length==0||data.total==0)
+								{
+								$("#divnodata").html("无数据!");
+									//document.getElementById("divnodata").hidden=false;
+									if(!isLoadMore)
+								 {
+									 
+								 	mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+								}
+								
+									ul.innerHTML = '';
+									return;
+								}
+								
+								if(!isLoadMore)
+								{
+								
+									ul.innerHTML = '';
+							    }
+								var html = '';
+								
+								//document.getElementById("divnodata").hidden=true;
+								var totalpage_1 = data.totalElements%size //取余数
+								console.log("是否整除=="+totalpage_1===0)
+								if(totalpage_1===0){
+									totalpage = data.totalElements/size 
+								}else{
+									totalpage = Math.ceil(data.totalElements/size);//向上取整数
+								}
+								
+								console.log("获取的总页数=="+totalpage)
+								mui.each(data.content, function(index, item) {
+									
+					        html +=  '<li class="layui-timeline-item">'+
+			        
+			                    ' <i class="layui-icon layui-timeline-axis circle"></i>'+
+			                    ' <div class="layui-timeline-content layui-text layui-sty">'+
+			                       ' <h4 class="layui-timeline-title">'+item.station.stationLocation +'</h4>'+
+			                      '<p >'+item.areaEntertime+ '</p>'+
+			                    '</div>'+
+			                  ' </li>'	
+								});
+								ul.innerHTML += html;
+			                    mui(".mine_class").off("tap");//此功能主要用于解决重复执行on事件问题
+								mui('.mine_class').on('tap', '.mui-table-view-cell-1', function(e) {
+									
+									var _self = this;
+									var idd = _self.getAttribute('data-id');
+
+									/* mui.openWindow({
+										url: 'personal-substation1.html',
+										id: 'personal-substation1.html',
+										createNew: true,
+										waiting: {autoShow: false},
+									}); */
+			
+								})
+								console.log("!isLoadMore=="+!isLoadMore)
+								if(!isLoadMore)
+								 {
+								 	mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+								}
+								 else
+								 {
+								 	mui('#pullrefresh').pullRefresh().endPullupToRefresh(count>totalpage);
+								 }
+								 },
+								 error:function(e){
+								 	//wt.close(); //关闭等待提示按钮
+								 	console.log(e.responseText)
+								 	mui.toast('网络错误')
+								 }
+							});
+						}
+		</script>
+	</body>
+
+</html>

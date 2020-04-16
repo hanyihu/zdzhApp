@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.css" rel="stylesheet" />
+	  
+	     <link rel="stylesheet" href="../../../css/warn/dataquery.css"/>
+	
+	 
+	</head>
+
+	<body>
+		<div id="app">
+		<!--头部开始-->
+		  <header class="mui-bar mui-bar-nav head-title">
+	  	  <a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left "></a> 
+			<h1 class="mui-title ">水文地质</h1>
+			<!-- <b class=" mui-pull-right lm_head_zb_title" id="choseImage" style="margin-top: 3%;">上传</b> -->
+		  </header>
+		
+		  <!--可拖动的选项卡-->
+		  <div id="pullrefresh" style="margin-top: 12%;">
+		   
+		    <div  id="divnodata" style="font-size: 20px;color: red;text-align: center;margin-top: 15%;"></div>
+			
+			<ul class="mine_class monitor-card-ul " id="minelist">	</ul> 	
+				 
+		        
+		  </div>
+		
+		<nav class="mui-bar mui-bar-tab" style="background: white;">
+			<a id="precipitation" class=" mui-tab-item "  href="#tabbar">
+				 <span class="mui-icon mui-icon mui-icon-map mui-active"></span> 
+				<span class="mui-tab-label" style="color:#1885F2;">降水量</span>
+			</a>
+		
+			<a id="water-inflow" class="mui-tab-item  ">
+				 <span class="mui-icon mui-icon mui-icon-list mui-spin"></span> 
+				<span class="mui-tab-label">涌水量</span>
+			</a>
+		
+		<a id="hydrological" class="mui-tab-item  ">
+		   <span class=" mui-icon mui-icon-info mui-spin "></span> 
+		   <span class="mui-tab-label" >水文监测孔</span>
+		</a>
+		</nav>
+		</div>
+        <script src="../../../js/mui.js"></script>
+		<script src="../../../js/Util.js"></script>
+		<script src="../../../js/vue.js"></script>
+		<script src="../../../js/mui.picker.js"></script>
+		<script src="../../../js/mui.poppicker.js"></script>
+		<script src="../../../js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			
+			var count = 1;
+			var totalpage=1;
+			var isLoadMore=false;
+			(function(mui, doc) {
+				mui.init({
+					swipeBack: true ,
+									pullRefresh: {
+										container: '#pullrefresh',
+										down: {
+											style:'circle',
+											callback: pulldownRefresh
+										},
+										up: {
+											//auto:true,
+											contentrefresh: '正在加载...',
+											callback: pullupRefresh
+										}
+									}
+				});
+			mui.plusReady(function() {
+				getPrecipitation()
+			});
+			
+			}(mui, document));
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					count=1;
+					isLoadMore=false;
+				
+					getPrecipitation();
+					
+				}, 1000);
+			}
+			
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+				isLoadMore=true;
+				count++;
+				
+					if(count<=totalpage)
+					  {
+					  	getPrecipitation();
+					  }
+					  else
+					  {
+					  	//count=totalpage;
+					  	mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					  }
+				}, 1000);
+			}
+			
+			
+						function getPrecipitation() {
+							var ul = document.getElementById('minelist');
+							var size = 10; //每页的条数
+							var token = "Bearer "+localStorage.getItem("$token")
+							var mine_id = localStorage.getItem('$mineId');
+							console.log("现在是第 "+count+" 页数据")
+							
+							var baseUrl=Util.BaseUrl;
+							mui.ajax({
+								url:baseUrl + 'api/rainfallValue/rainfallValue/list?page='+count+'&size='+size+'&mineId='+mine_id,
+														   
+								headers: {'Authorization': token },
+								dataType:'json',//服务器返回json格式数据
+								type:'get',//HTTP请求类型
+								timeout:10000,//超时时间设置为10秒；
+								contentType: "application/json;charset=UTF-8",     
+							   
+							success:function(data,textStatus,xhr){
+								//cityPicker3.setData(data);
+								console.log("获取的水文地质降水量列表数据=="+JSON.stringify(data))
+								if(data==null||data.length==0||data.totalCount==0)
+								{
+								
+									$("#divnodata").html("无数据!");
+									if(!isLoadMore)
+								 {
+									 
+								 	mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+								}
+								
+									ul.innerHTML = '';
+									return;
+								}
+								
+								if(!isLoadMore)
+								{
+								
+									ul.innerHTML = '';
+							    }
+								var html = '';
+								document.getElementById("divnodata").hidden=true;
+								var totalpage_1 = data.totalCount%size //取余数
+								console.log("是否整除=="+totalpage_1===0)
+								if(totalpage_1===0){
+									totalpage = data.totalCount/size 
+								}else{
+									totalpage = Math.ceil(data.totalCount/size);//向上取整数
+								}
+								
+								console.log("获取的总页数=="+totalpage)
+								mui.each(data.content, function(index, item) {
+									
+					html +=  '<li class="mui-table-view-cell-1" style="height:180px ;" data-id="' + item.point_id + '"> '+
+							  '<div class="monitor-card2" > ' +
+								  '<div class="monitor-card-title-water" >'+
+								    '&nbsp;&nbsp;&nbsp;' + item.device_code +						  
+								  '</div> ' +
+								
+								'<hr color="#357EBD">' +
+								'<div class="personal-station-2" style="margin-top: 3%"> '+
+									'<div class="personal-station-1">&nbsp;&nbsp;降水量:</div> '+
+								    '<div class="personal-station" >'+ item.rainfall + '&nbsp;&nbsp;</div>'+
+								
+								'</div> ' +
+								'<div class="personal-station-2" > ' +
+									'<div class="personal-station-1">&nbsp;&nbsp;采集时间:</div> ' +
+								    '<div class="personal-station" >' + item.collection_time + '&nbsp;&nbsp;</div>'+
+								
+								'</div>' +
+								'<div class="personal-station-2">' +
+									'<div class="personal-station-1">&nbsp;&nbsp;清空时间:</div>' +
+								    '<div class="personal-station" >' + item.empty_time + '&nbsp;&nbsp;</div>' +
+								
+								'</div>' +
+								'<div class="personal-station-2">' +
+									'<div class="personal-station-1">&nbsp;&nbsp;测量时间:</div>' +
+								    '<div class="personal-station" >' + item.measure_time + '&nbsp;&nbsp;</div>' +
+								
+								'</div>' +
+								
+							'</div>' +
+						'</li>';
+								});
+								ul.innerHTML += html;
+			                    mui(".mine_class").off("tap"); 
+								mui('.mine_class').on('tap', '.mui-table-view-cell-1', function(e) {
+									var _self = this;
+									var pointId = _self.getAttribute('data-id');
+									//localStorage.setItem('$deptName', deptName);
+									console.log("指针id=="+pointId)
+									mui.openWindow({
+										url: 'datachart.html',
+										id: 'datachart.html',
+										extras: {
+										         pointId: pointId
+										        },
+										createNew: true,
+										waiting: {autoShow: false},
+									});
+			
+								})
+								
+								if(!isLoadMore)
+								 {
+								 	mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+								}
+								 else
+								 {
+								 	mui('#pullrefresh').pullRefresh().endPullupToRefresh(count>totalpage);
+								 }
+								  mui('#pullrefresh').pullRefresh().refresh(true); //激活上拉
+								 },
+								 error:function(xhr,type,errorThrown){
+								 	//wt.close(); //关闭等待提示按钮
+								 	console.log(xhr.status)
+								 	mui.toast('网络错误')
+								 }
+							});
+						}
+					
+			
+				//跳转到涌水量
+				mui("body").on("tap", "#water-inflow", function(){
+					var page = "inflow.html"
+					mui.openWindow({
+						url: page,
+						id: page,
+						createNew: true,
+						waiting: {autoShow: false},
+					});
+					
+				})
+					//跳转到水文监测孔
+					mui("body").on("tap", "#hydrological", function(){
+						var page = "hydrological.html"
+						mui.openWindow({
+							url: page,
+							id: page,
+							createNew: true,
+							waiting: {autoShow: false},
+						});
+						
+					})
+						
+			
+			
+		</script>
+	</body>
+
+</html>

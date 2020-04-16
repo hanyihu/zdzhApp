@@ -1,0 +1,25 @@
+/* ����ͼ�� �Ѽ����� www.lanrentuku.com */
+
+#FontScroll{
+	
+	height:40px;
+	line-height:40px;
+	overflow:hidden;
+	margin:0 auto;
+	
+	}
+
+
+#FontScroll .fontColor a{color:#333; }
+#FontScroll ul{
+	/*margin-left: 110px;*/
+}
+#FontScroll ul li a{ 
+	display: block; 
+	padding: 0 6px; 
+	font-size: 12px;
+	line-height:40px;
+	color: #333;
+}
+
+

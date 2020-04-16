@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../css/lm_pages.css" />
+		<link rel="stylesheet" href="../../../css/lm_reset.css" />
+		
+	<style>
+		.video-mine{
+			width: 100%;
+			
+			
+		}
+		
+	   .video-mine .video-mine-left {
+			
+			 width: calc(100% / 2);
+	         display: inline;
+			float: left;
+	
+		}
+		.video-mine .video-mine-left video{
+				height: 80px;	
+					
+		      display: inline;
+			
+			
+				}
+		
+		.video-mine .video-mine-left div{
+			text-align: left;
+			font-size: 130%;
+		}
+		
+		
+	</style>	
+		 
+	</head>
+
+	<body>
+		<div id="app">
+		<header class="mui-bar mui-bar-nav lm_mainbg lm_head_zb">
+			<a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left lm_head_zb_color"></a> 
+			<h1 class="mui-title lm_head_zb_title">视频监控</h1>
+			<!-- <b class=" mui-pull-right lm_head_zb_title" id="choseImage" style="margin-top: 3%;">上传</b> -->
+		</header>
+		
+		<div style="margin-top: 44px;">
+		
+		<!--可拖动的选项卡-->
+		<div class="mui-slider">
+		    <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+		        <a class="mui-control-item" style="font-size: 120%;" href="#item1">按矿井</a>
+		        <a class="mui-control-item" style="font-size: 120%;" href="#item2">按系统</a>
+		    </div>
+		    <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+		    <div class="mui-slider-group">
+		        <div id="item1" class="mui-slider-item mui-control-content mui-active">
+		            <ul class="mui-table-view">
+		            	<li class="mui-table-view-cell mui-collapse">
+		            		<a class="mui-navigate-right" style="font-size: 150%;color: #2A6496;" href="#">济二煤矿</a>
+		            		<div class="video-mine">
+								
+							<div class="mui-collapse-content video-mine-left">
+		            			<video class="" controls autoplay>
+		            			  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/ogg">
+		            			  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/mp4">
+		            			  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/webm">
+		            			 <object data="movie.mp4" width="320" height="240">
+		            			    <embed width="320" height="240" src="movie.swf">
+		            			  </object> 
+		            			</video>
+								
+								<div>济二煤矿东侧1</div>
+		            		</div>
+							
+							<div class="mui-collapse-content video-mine-left">
+								<video class="" controls autoplay>
+								  <source src="movie.ogg" type="video/ogg">
+								  <source src="movie.mp4" type="video/mp4">
+								  <source src="movie.webm" type="video/webm">
+								  <object data="movie.mp4" >
+								    <embed  src="movie.swf">
+								  </object>
+								</video>
+								
+								<div>济二煤矿西侧2</div>
+							</div>
+							
+							<div class="mui-collapse-content video-mine-left">
+								<video class="" controls autoplay>
+								  <source src="movie.ogg" type="video/ogg">
+								  <source src="movie.mp4" type="video/mp4">
+								  <source src="movie.webm" type="video/webm">
+								  <object data="movie.mp4" >
+								    <embed  src="movie.swf">
+								  </object>
+								</video>
+								
+								<div>济二煤矿西侧3</div>
+							</div>
+							
+							<div class="mui-collapse-content video-mine-left">
+								<video class="" controls autoplay>
+								  <source src="movie.ogg" type="video/ogg">
+								  <source src="movie.mp4" type="video/mp4">
+								  <source src="movie.webm" type="video/webm">
+								  <object data="movie.mp4" >
+								    <embed  src="movie.swf">
+								  </object>
+								</video>
+								
+								<div>济二煤矿西侧4</div>
+							</div>
+							
+		            	</div>
+						</li>
+		            	<hr color="gainsboro">
+		            	<li class="mui-table-view-cell mui-collapse">
+		            		<a class="mui-navigate-right" style="font-size: 150%;color: #2A6496;" href="#">济三煤矿</a>
+		            		<div class="video-mine">
+		            				
+		            			<div class="mui-collapse-content video-mine-left">
+		            				<video class="" controls autoplay>
+		            				  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/ogg">
+		            				  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/mp4">
+		            				  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/webm">
+		            				 <object data="movie.mp4" width="320" height="240">
+		            				    <embed width="320" height="240" src="movie.swf">
+		            				  </object> 
+		            				</video>
+		            				
+		            				<div>济三煤矿1</div>
+		            			</div>
+		            			
+		            			<div class="mui-collapse-content video-mine-left">
+		            				<video class="" controls autoplay>
+		            				  <source src="movie.ogg" type="video/ogg">
+		            				  <source src="movie.mp4" type="video/mp4">
+		            				  <source src="movie.webm" type="video/webm">
+		            				  <object data="movie.mp4" >
+		            				    <embed  src="movie.swf">
+		            				  </object>
+		            				</video>
+		            				
+		            				<div>济三煤矿2</div>
+		            			</div>
+		            			
+		            			<div class="mui-collapse-content video-mine-left">
+		            				<video class="" controls autoplay>
+		            				  <source src="movie.ogg" type="video/ogg">
+		            				  <source src="movie.mp4" type="video/mp4">
+		            				  <source src="movie.webm" type="video/webm">
+		            				  <object data="movie.mp4" >
+		            				    <embed  src="movie.swf">
+		            				  </object>
+		            				</video>
+		            				
+		            				<div>济三煤矿3</div>
+		            			</div>
+		            			
+		            			<div class="mui-collapse-content video-mine-left">
+		            				<video class="" controls autoplay>
+		            				  <source src="movie.ogg" type="video/ogg">
+		            				  <source src="movie.mp4" type="video/mp4">
+		            				  <source src="movie.webm" type="video/webm">
+		            				  <object data="movie.mp4" >
+		            				    <embed  src="movie.swf">
+		            				  </object>
+		            				</video>
+		            				
+		            				<div>济三煤矿4</div>
+		            			</div>
+		            			
+								<div class="mui-collapse-content video-mine-left">
+									<video class="" controls autoplay>
+									  <source src="movie.ogg" type="video/ogg">
+									  <source src="movie.mp4" type="video/mp4">
+									  <source src="movie.webm" type="video/webm">
+									  <object data="movie.mp4" >
+									    <embed  src="movie.swf">
+									  </object>
+									</video>
+									
+									<div>济三煤矿5</div>
+								</div>
+		            		</div>
+		            	</li>
+		            	<hr color="gainsboro">
+						<li class="mui-table-view-cell mui-collapse">
+							<a class="mui-navigate-right" style="font-size: 150%;color: #2A6496;" href="#">东滩煤矿</a>
+							<div class="video-mine">
+							<div class="mui-collapse-content video-mine-left">
+								<video class="" controls autoplay>
+								  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/ogg">
+								  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/mp4">
+								  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/webm">
+								 <object data="movie.mp4" width="320" height="240">
+								    <embed width="320" height="240" src="movie.swf">
+								  </object> 
+								</video>
+								
+								<div>东滩煤矿1</div>
+							</div>
+							</div>
+						</li>
+						<hr color="gainsboro">
+						<li class="mui-table-view-cell mui-collapse">
+							<a class="mui-navigate-right" style="font-size: 150%;color: #2A6496;" href="#">赵楼煤矿</a>
+							<div class="video-mine">
+								<div class="mui-collapse-content video-mine-left">
+									<video class="" controls autoplay>
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/ogg">
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/mp4">
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/webm">
+									 <object data="movie.mp4" width="320" height="240">
+									    <embed width="320" height="240" src="movie.swf">
+									  </object> 
+									</video>
+									
+									<div>赵楼煤矿1</div>
+								</div>		
+							</div>
+						</li>
+						<hr color="gainsboro">
+						<li class="mui-table-view-cell mui-collapse">
+							<a class="mui-navigate-right" style="font-size: 150%;color: #2A6496;" href="#">鲍店煤矿</a>
+							<div class="video-mine">
+								<div class="mui-collapse-content video-mine-left">
+									<video class="" controls autoplay>
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/ogg">
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/mp4">
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/webm">
+									 <object data="movie.mp4" width="320" height="240">
+									    <embed width="320" height="240" src="movie.swf">
+									  </object> 
+									</video>
+									
+									<div>鲍店煤矿1</div>
+								</div>		
+							</div>
+						</li>
+						
+						
+		            </ul>
+		        </div>
+		        <div id="item2" class="mui-slider-item mui-control-content">
+		            <ul class="mui-table-view">
+		            	<li class="mui-table-view-cell mui-collapse">
+		            		<a class="mui-navigate-right" style="font-size: 150%;color: #2A6496;" href="#">瓦斯系统</a>
+		            		<div class="video-mine">
+		            			<div class="mui-collapse-content video-mine-left">
+		            				<video class="" controls autoplay>
+		            				  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/ogg">
+		            				  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/mp4">
+		            				  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/webm">
+		            				 <object data="movie.mp4" width="320" height="240">
+		            				    <embed width="320" height="240" src="movie.swf">
+		            				  </object> 
+		            				</video>
+		            				
+		            				<div>鲍店煤矿瓦斯系统1</div>
+		            			</div>
+										
+										<div class="mui-collapse-content video-mine-left">
+											<video class="" controls autoplay>
+											  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/ogg">
+											  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/mp4">
+											  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/webm">
+											 <object data="movie.mp4" width="320" height="240">
+											    <embed width="320" height="240" src="movie.swf">
+											  </object> 
+											</video>
+											
+											<div>济二煤矿瓦斯系统2</div>
+											
+										</div>	
+		            		</div>
+		            	</li>
+		            	<hr color="gainsboro">
+		            	<li class="mui-table-view-cell mui-collapse">
+		            		<a class="mui-navigate-right" style="font-size: 150%;color: #2A6496;" href="#">通风系统</a>
+		            		<div class="video-mine">
+		            			<div class="mui-collapse-content video-mine-left">
+		            				<video class="" controls autoplay>
+		            				  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/ogg">
+		            				  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/mp4">
+		            				  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/webm">
+		            				 <object data="movie.mp4" width="320" height="240">
+		            				    <embed width="320" height="240" src="movie.swf">
+		            				  </object> 
+		            				</video>
+		            				
+		            				<div>鲍店通风1</div>
+		            			</div>		
+		            		</div>
+		            	</li>
+						
+						<hr color="gainsboro">
+						<li class="mui-table-view-cell mui-collapse">
+							<a class="mui-navigate-right" style="font-size: 150%;color: #2A6496;" href="#">人员定位</a>
+							<div class="video-mine">
+								<div class="mui-collapse-content video-mine-left">
+									<video class="" controls autoplay>
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/ogg">
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/mp4">
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/webm">
+									 <object data="movie.mp4" width="320" height="240">
+									    <embed width="320" height="240" src="movie.swf">
+									  </object> 
+									</video>
+									
+									<div>济二人员定位1</div>
+								</div>		
+							</div>
+						</li>
+						
+						<hr color="gainsboro">
+						<li class="mui-table-view-cell mui-collapse">
+							<a class="mui-navigate-right" style="font-size: 150%;color: #2A6496;" href="#">水文系统</a>
+							<div class="video-mine">
+								<div class="mui-collapse-content video-mine-left">
+									<video class="" controls autoplay>
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/ogg">
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/mp4">
+									  <source src="http://10.61.37.31:10000/play.html?serial=37088300411326100003&code=37088300411326100009&share=no&controls=no&ptz=no&aspect=fullscreen" type="video/webm">
+									 <object data="movie.mp4" width="320" height="240">
+									    <embed width="320" height="240" src="movie.swf">
+									  </object> 
+									</video>
+									
+									<div>济二水文1</div>
+								</div>		
+							</div>
+						</li>
+						
+		            </ul>
+		        </div>
+		    </div>
+		</div>
+		
+		  <!-- <ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right" style="font-size: 150%;color: #2A6496;" href="#">济二煤矿</a>
+				<div class="mui-collapse-content">
+					<p>面板1子内容</p>
+				</div>
+			</li>
+			<hr>
+			
+		</ul> -->
+		
+		<div>
+		
+		
+		</div>
+		<script src="../../../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

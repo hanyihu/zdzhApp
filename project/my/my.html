@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="referrer" content="never">
+		<title></title>
+		<link href="../../css/mui.css" rel="stylesheet" />
+		<link href="../../css/index.css" rel="stylesheet" />
+		<link href="../../css/my.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../css/lm_pages.css" />
+		<!-- <link href="../../supplierCss/index.css" rel="stylesheet"/> -->
+	    <style>
+			.follow {
+				height:auto;
+
+			}
+			.follow1 {
+			line-height: 30px;
+				width: 28%;
+			float: left;
+			  text-align: center;
+			border-radius: 15px;
+			background: #5CB85C;
+			
+			}
+			.follow2 {
+				line-height: 30px;
+				width: 40%;
+			    display: inline-block;
+			    text-align: center;
+			border-radius: 15px;
+			background: #8A6DE9;
+			
+			}
+			.follow3 {
+			line-height: 30px;
+				width: 26%;
+				float: right;
+			  text-align: center;
+			  border-radius: 15px;
+			  background: #E67744;
+			}
+		</style>
+	
+	</head>
+	<body>
+		<div id="app">
+			<!-- <div class="header">
+			<h1 class="mui-title lm_head_zb_title" style="color: white;">我的</h1>
+			<span class="mui-icon mui-icon mui-icon-gear " ></span>
+			</div> -->
+			<header class="mui-bar mui-bar-nav lm_mainbg lm_head_zb" id="backBtn">
+
+				<h1 class="mui-title lm_head_zb_title">我的</h1>
+				<b class="mui-icon mui-icon-gear  mui-pull-right" id="mine_choise" style="color: white;"></b>
+			</header>
+
+			<div class="card">
+				<div class="card_top">
+					<div class="card_top_img ">
+						<img style="width:60px; height:60px; border-radius:50%; "
+						 src="http://47.108.30.209:8081/tn-image/11.jpg" alt="头像">
+					</div>
+
+					<div class="card_top_news">
+
+						<span id="userName" style="font-size: 20px;" ></span>
+					</div>
+				</div>
+				<div class="card_bottom">
+					<div class="card_bottom_tel">
+						<div class="card_bottom_tel_img"></div>
+						<span id="userPhone"></span>
+					</div>
+					<div class="card_bottom_pos">
+					<div class="card_bottom_pos_img"></div>
+					<span id="userDept"></span>
+				</div> 
+				</div>
+			</div>
+
+			<div class="mui-content lm_bgf5" style="margin-top: 200px;background: white;">
+				<div class="lm_w94 " id="personal">
+
+					<!--带箭头的一行-->
+					<div class="lm_yh_INfo_r lm_bor_b lm_flex_bt" id="app_version">
+						<i class="lm_f14">软件版本 </i>
+						<span class="mui-icon mui-icon mui-icon-arrowright"></span>
+					</div>
+					<!--带箭头的一行-->
+					<!--带箭头的一行-->
+					<div class="lm_yh_INfo_r lm_bor_b lm_flex_bt" id="app_update">
+
+						<i class="lm_f14">软件更新 </i>
+						<span class="mui-icon mui-icon mui-icon-arrowright"></span>
+					</div>
+					<!--带箭头的一行-->
+					<!--带箭头的一行-->
+					<div class="lm_yh_INfo_r lm_bor_b lm_flex_bt" id="my_about">
+
+						<i class="lm_f14">关于 </i>
+						<span class="mui-icon mui-icon mui-icon-arrowright"></span>
+					</div>
+					
+					<div  id="">
+					<ul class="">
+					    <li class="mui-table-view-cell mui-collapse ">
+					        <a class="mui-navigate-right lm_f14" style="color: #000000;margin-left: -4%;" href="#">关注</a>
+					        <div class=" mui-collapse-content follow">
+					           <div class="follow1">
+								   济二煤矿
+							   </div> 
+							   &nbsp;
+							   <div class="follow2">
+							   		通风口
+							   </div> 
+							    &nbsp;
+							   <div class="follow3">
+							   		一级报警
+							   </div> 
+					        </div>
+					    </li>
+					 
+					</ul>
+					</div>
+					
+					<!--带箭头的一行-->
+					<div class="lm_WD_subbox lm_mar20_bot" style="margin-top: 38px;">
+						<input type="button" id="logout" value="退出当前帐号" class="lm_in_btn lm_in_btnbg3" />
+					</div>
+				</div>
+			</div>
+			<!-- <div class="edit">
+			 
+			<div class="mui-button-row" style="margin-top: 64px">
+				<button type="button" class="mui-btn mui-btn-primary" style="width: 90%;background: #2385e4;border-radius: 0" >退出当前账号</button>
+			</div>
+		</div> -->
+			<nav class="mui-bar mui-bar-tab" style="background: white;">
+				<a id="program" class=" mui-tab-item " href="#tabbar">
+					<span class="mui-icon mui-icon-navigate"></span>
+					<!-- <span class="mui-tab-label" style="color:#1885F2">系统</span> -->
+				</a>
+
+				<a id="home" class="mui-tab-item  ">
+					<span class="mui-icon mui-icon-spinner mui-spin"></span>
+					<!-- <span class="mui-tab-label">主页</span> -->
+				</a>
+
+				<a class="mui-tab-item  mui-active" href="#tabbar-with-map">
+					<span class="mui-icon mui-icon-contact"></span>
+					<!-- <span class="mui-tab-label">我的</span> -->
+				</a>
+			</nav>
+		</div>
+
+
+		<script src="../../js/mui.min.js"></script>
+
+		<script src="../../js/util.js"></script>
+		<script src="../../js/jquery.min.js"></script>
+		<script src="../../js/index.js"></script>
+		<script src="../../js/vue.js"></script>
+
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+
+           mui.plusReady(function(){
+            //console.log("当前页面URL："+plus.webview.currentWebview().getURL());
+		   var user1 = localStorage.getItem("$user");
+		 
+		   var json = JSON.parse(user1);
+		   $("#userName").html("&nbsp;&nbsp;"+json.username);
+		   $("#userPhone").html(json.phone);
+		   $("#userDept").html(json.dept);
+              });
+			/* var userId = localStorage.getItem('$userId');
+			var personal = new Vue({
+				el: '#app',
+				data: {
+					personInfo: ''
+				},
+				created() {
+					this.getUserInfo();
+				},
+				methods: {
+					getUserInfo: function() {
+						var that = this;
+						mui.ajax(Util.BaseUrl + 'api/user/getUserInfor', {
+							data: {
+								userId: userId
+							},
+							dataType: 'json', //服务器返回json格式数据
+							type: 'post', //HTTP请求类型
+							timeout: 10000, //超时时间设置为10秒；
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded'
+							},
+							success: function(data) {
+								//服务器返回响应，根据响应结果，分析是否登录成功；
+								if (data.code == 0) {
+									that.personInfo = data.data;
+								} else {
+									mui.toast(data.msg);
+								}
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast('网络错误');
+							}
+						});
+					}
+				}
+			}); */
+
+
+			//系统
+			mui('body').on('tap', '#program', function() {
+					mui.openWindow({
+						id: 'program.html',
+						url: '../program/program.html',
+						createNew: true,
+
+						waiting: {
+							autoShow: false
+						},
+					})
+				}),
+
+				//主页
+				mui('body').on('tap', '#home', function() {
+					mui.openWindow({
+						id: 'index.html',
+						url: '../../main.html',
+						createNew: true,
+
+						waiting: {
+							autoShow: false
+						},
+					})
+				}),
+
+				//设置
+				mui('body').on('tap', '#mine_choise', function() {
+					mui.openWindow({
+						id: 'setting',
+						url: 'my_setting.html',
+						createNew: true,
+						extras: {},
+						waiting: {
+							autoShow: false
+						},
+					})
+				}),
+
+				//软件版本
+
+				mui('body').on('tap', '#app_version', function() {
+					mui.openWindow({
+						id: 'app_version.html',
+						url: 'app_version.html',
+						createNew: true,
+						waiting: {
+							autoShow: false
+						},
+						extras: {}
+					})
+				}),
+
+
+				//软件更新	
+				mui('body').on('tap', '#app_update', function() {
+					mui.openWindow({
+						id: 'app_update',
+						url: 'app_update1.html',
+						createNew: true,
+						waiting: {
+							autoShow: false
+						},
+						extras: {}
+					})
+				}),
+
+
+				//关于
+
+				mui('body').on('tap', '#my_about', function() {
+					mui.openWindow({
+						id: 'my_about',
+						url: 'about.html',
+						createNew: true,
+						waiting: {
+							autoShow: false
+						},
+						extras: {}
+					})
+				}),
+
+				//退出当前帐号
+				mui('body').on('tap', '#logout', function() {
+					      localStorage.removeItem("$token");//删除缓存token令牌
+						  localStorage.removeItem("$mineId");//删除缓存mineId矿井id
+						  localStorage.removeItem("$user");//删除缓存user信息
+						//localStorage.clear();
+							mui.openWindow({
+								url: '../login/login.html',
+								waiting: {
+									autoShow: false
+								},
+								createNew: true
+							});
+						
+				
+				});
+		</script>
+
+	</body>
+</html>
