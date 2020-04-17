@@ -16,8 +16,8 @@
 		<div id="app">
 		<!--头部开始-->
 		  <header class="mui-bar mui-bar-nav head-title">
-	  	  <a id="backFeedBack" class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left "></a> 
-			<h1 class="mui-title ">水文地质</h1>
+	  	  <a id="backFeedBack" class=" mui-icon mui-icon-arrowleft mui-pull-left "></a> 
+			<h1 class="mui-title ">水文地质--降水量</h1>
 			<!-- <b class=" mui-pull-right lm_head_zb_title" id="choseImage" style="margin-top: 3%;">上传</b> -->
 		  </header>
 		
@@ -260,6 +260,18 @@
 					})
 						
 			
+			//返回到main主页
+			mui("body").on("tap", "#backFeedBack", function() {
+				var page = "../../../main.html"
+				mui.openWindow({
+					url: page,
+					id: page,
+					createNew: true,
+					waiting: {
+						autoShow: false
+					},
+				});
+			})
 			
 		</script>
 	</body>
